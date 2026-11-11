@@ -1,0 +1,1376 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond MISTE";
+  src: url("/fonts/CormorantGaramond-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+html,
+body {
+  background: #ffffff;
+  width: 100%;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Intro overlay: covers the page on first load while the 0–100% counter runs,
+   then fades away (see Preloader) before the page intro plays. */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: #ffffff;
+}
+
+.preloader-count {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  color: #111;
+  font-variant-numeric: tabular-nums;
+}
+
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid #111;
+  border-radius: 0;
+  pointer-events: none;
+  z-index: 1000;
+  transition:
+    width 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+    height 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+    border-radius 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: transform;
+}
+
+#cursor::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #111;
+  border-radius: 0;
+  opacity: 0;
+  z-index: -1;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  transition:
+    opacity 0.35s cubic-bezier(0.65, 0, 0.35, 1),
+    transform 0.35s cubic-bezier(0.65, 0, 0.35, 1),
+    border-radius 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  pointer-events: none;
+}
+
+#cursor.is-hover {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+#cursor.is-hover::after {
+  border-radius: 50%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+@media (hover: none) {
+  #cursor {
+    display: none;
+  }
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+body {
+  color: #111;
+}
+
+/* Hidden until the first-load intro reveals them (see _playIntro). Prevents a
+   flash of resting nav/footer text while textures load before the intro runs. */
+html.js #nav a,
+html.js #footer a {
+  opacity: 0;
+}
+
+#nav {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.5rem;
+  z-index: 200;
+  display: flex;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+#nav a:not(:last-child)::after {
+  content: ",";
+  margin-left: 0.05rem;
+}
+
+.page-title {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 10;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #111;
+  opacity: 0.5;
+  pointer-events: none;
+  margin: 0;
+}
+
+#nav a {
+  position: relative;
+  color: #111;
+  text-decoration: none;
+  pointer-events: auto;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+#nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+  pointer-events: none;
+}
+
+#nav a:hover::before,
+#nav a.is-active::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.inner-fact {
+  position: fixed;
+  top: 10rem;
+  left: 1.5rem;
+  z-index: 10;
+  max-width: 16rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: #111;
+  pointer-events: none;
+  margin: 0;
+}
+
+#nav a:hover,
+#nav a.is-active {
+  opacity: 1;
+}
+
+#footer {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+#footer a {
+  position: relative;
+  color: #111;
+  text-decoration: none;
+  pointer-events: auto;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+#footer a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+  pointer-events: none;
+}
+
+#footer a:hover::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+#footer a:hover {
+  opacity: 1;
+}
+
+#footer div a:not(:last-child)::after {
+  content: ",";
+  margin-left: 0.05rem;
+}
+
+#gpu-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: block;
+  pointer-events: none;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+}
+
+.page-main .slot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 23vw;
+  display: block;
+  pointer-events: auto;
+  will-change: transform;
+}
+
+.page-main .slot figure {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.page-main .slot-caption {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-top: 0.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  color: #111;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.page-main .slot-0 {
+  aspect-ratio: 4907 / 7360;
+}
+.page-main .slot-1 {
+  aspect-ratio: 6000 / 4000;
+}
+.page-main .slot-2 {
+  aspect-ratio: 1122 / 1402;
+}
+
+/* MISTÉ case study */
+.page-miste {
+  --miste-paper: #f3f0ea;
+  z-index: 120;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--miste-paper);
+  color: #171612;
+  pointer-events: auto;
+  font-family: Arial, "Noto Sans SC", sans-serif;
+}
+
+.page-miste .page-title { z-index: 130; }
+.page-miste .inner-fact {
+  position: absolute;
+  top: 52vh;
+  left: 6vw;
+  max-width: 18rem;
+  color: #5f5a52;
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+.miste-intro {
+  position: relative;
+  min-height: 100vh;
+  padding: 9vh 6vw;
+  border-bottom: 1px solid rgba(23, 22, 18, 0.16);
+}
+.miste-index,
+.miste-kicker,
+.miste-figure figcaption,
+.miste-campaign-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.miste-index { color: #6d675f; }
+.miste-heading {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(74vw, 920px);
+  text-align: center;
+}
+.miste-kicker { margin-bottom: 1.2rem; color: #777168; }
+.miste-wordmark {
+  width: max-content;
+  margin: 0 auto;
+  padding-left: 0.18em;
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(7rem, 15vw, 14rem);
+  font-weight: 300;
+  line-height: 0.78;
+  letter-spacing: 0.18em;
+  font-kerning: none;
+}
+.miste-lead {
+  margin-top: 2.2rem;
+  font-family: "Noto Serif SC", SimSun, serif;
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  letter-spacing: 0.2em;
+}
+.miste-study { padding: 12vh 0 0; }
+.miste-figure {
+  position: relative;
+  width: 88vw;
+  margin-bottom: 18vh;
+}
+.miste-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--miste-paper);
+}
+.miste-figure figcaption {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  color: #726c63;
+}
+.miste-figure.is-left { margin-left: 5vw; margin-right: auto; }
+.miste-figure.is-right { margin-left: auto; margin-right: 5vw; }
+.miste-figure.is-center { margin-left: auto; margin-right: auto; }
+.miste-figure.is-portrait { width: min(60vw, 780px); }
+.miste-figure.is-wide-portrait { width: min(68vw, 890px); }
+.miste-figure.is-cover { width: min(54vw, 690px); }
+.miste-break {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 8vw;
+  width: 88vw;
+  margin: 4vh auto 22vh;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(23, 22, 18, 0.28);
+}
+.miste-break p { font-size: 0.64rem; letter-spacing: 0.18em; }
+.miste-break h3 {
+  font-family: "Noto Serif SC", SimSun, serif;
+  font-size: clamp(2.2rem, 5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.32;
+  letter-spacing: 0.05em;
+}
+.miste-campaign {
+  position: relative;
+  width: 100%;
+  padding: 10vh 7vw 14vh;
+  background: #ece8df;
+}
+.miste-campaign-label { margin-bottom: 2rem; }
+.miste-campaign img {
+  display: block;
+  width: min(58vw, 760px);
+  height: auto;
+  margin: 0 auto;
+}
+.miste-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: 58vh;
+  padding: 8vh 6vw;
+  border-top: 1px solid rgba(23, 22, 18, 0.16);
+}
+.miste-end p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 13vw, 12rem);
+  line-height: 0.8;
+  letter-spacing: 0.14em;
+}
+.miste-end span { font-family: Georgia, serif; font-style: italic; }
+.page-main .slot-3 {
+  aspect-ratio: 3769 / 5025;
+}
+.page-main .slot-4 {
+  aspect-ratio: 6804 / 4104;
+}
+
+.page-inner .stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  padding-top: calc((100vh - var(--cell-h)) / 2);
+  padding-bottom: calc((100vh - var(--cell-h)) / 2);
+}
+
+.page-inner .slot {
+  width: 23vw;
+  display: block;
+  flex-shrink: 0;
+}
+
+.page-inner .slot figure {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.page-inner[data-image="0"] .slot {
+  aspect-ratio: 4907 / 7360;
+}
+.page-inner[data-image="1"] .slot {
+  aspect-ratio: 6000 / 4000;
+}
+.page-inner[data-image="2"] .slot {
+  aspect-ratio: 3634 / 5998;
+}
+.page-inner[data-image="3"] .slot {
+  aspect-ratio: 3769 / 5025;
+}
+.page-inner[data-image="4"] .slot {
+  aspect-ratio: 6804 / 4104;
+}
+
+.page-inner[data-image="0"] {
+  --cell-h: calc(23vw * 7360 / 4907);
+}
+.page-inner[data-image="1"] {
+  --cell-h: calc(23vw * 4000 / 6000);
+}
+.page-inner[data-image="2"] {
+  --cell-h: calc(23vw * 5998 / 3634);
+}
+.page-inner[data-image="3"] {
+  --cell-h: calc(23vw * 5025 / 3769);
+}
+.page-inner[data-image="4"] {
+  --cell-h: calc(23vw * 4104 / 6804);
+}
+
+.project-category { display:block; margin-top: .3rem; font-size: .7rem; }
+a:focus-visible, button:focus-visible { outline: 2px solid #385e44; outline-offset: 6px; }
+dialog { margin: auto; width: min(600px, calc(100% - 32px)); max-height: 85vh; padding: 48px; border: 1px solid #ddd; background: #f7f6f2; color: #222; }
+dialog::backdrop { background: #0005; backdrop-filter: blur(8px); }
+dialog h2 { font-size: clamp(28px, 5vw, 44px); line-height: 1.3; margin: 25px 0; font-weight: 500; letter-spacing: -.04em; }
+dialog p { font-size: 14px; line-height: 1.9; margin: 18px 0; }
+dialog .eyebrow { font-size: 10px; letter-spacing: .12em; }
+#close-about { float:right; border:0; background:none; cursor:pointer; font:inherit; }
+.graphics-fallback #nav a, .graphics-fallback #footer a { opacity: 1; }
+.fallback-gallery { padding: 100px 24px; max-width:1000px; margin:auto; }
+.fallback-gallery article { margin:60px 0; max-width:600px; }
+.fallback-gallery img { width:100%; max-height:65vh; object-fit:contain; object-position:left; }
+.fallback-gallery p { line-height:1.8; margin-top:12px; }
+@media(max-width: 600px) {
+ #nav { left:16px; } .page-title { right:16px; font-size:11px; }
+ #footer { left:16px; right:16px; font-size:10px; }
+ .page-main .slot, .page-inner .slot { width:52vw; }
+ .inner-fact { top:4.5rem; left:16px; max-width:calc(100vw - 32px); font-size:11px; z-index:150; background:#fffffff2; padding:12px; }
+ .page-inner .stack { padding-top:360px; padding-bottom:100px; }
+ dialog { padding:28px; }
+ .page-miste .inner-fact { top:68vh; left:20px; padding:0; background:none; max-width:70vw; }
+ .miste-intro { min-height:92vh; padding:80px 20px; }
+ .miste-heading { top:37%; width:90vw; }
+ .miste-wordmark { font-size:21vw; }
+ .miste-study { padding-top:70px; }
+ .miste-figure, .miste-figure.is-portrait, .miste-figure.is-wide-portrait, .miste-figure.is-cover { width:88vw; margin-left:auto; margin-right:auto; margin-bottom:100px; }
+ .miste-break { grid-template-columns:1fr; margin-bottom:110px; }
+ .miste-campaign { padding:70px 6vw 90px; }
+ .miste-campaign img { width:88vw; }
+ .miste-end { min-height:42vh; flex-direction:column; align-items:flex-start; justify-content:flex-end; gap:28px; }
+}
+
+/* Final MISTÉ case-study layout */
+.page-miste {
+  --miste-paper: #f3f0ea;
+  --miste-ink: #171615;
+  --miste-subhead: #68645d;
+  --miste-copy: #706c65;
+  --miste-sans: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  --miste-serif-cn: SimSun, "Songti SC", "STSong", serif;
+  font-family: var(--miste-sans);
+  color: var(--miste-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.page-miste .inner-fact {
+  font-family: var(--miste-sans);
+  font-weight: 300;
+  color: var(--miste-copy);
+}
+.page-miste .miste-lead {
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-style: italic;
+  letter-spacing: .04em;
+  color: var(--miste-ink);
+}
+.page-miste img { image-rendering: auto; }
+.page-miste .miste-section-index,
+.page-miste .miste-index,
+.page-miste .miste-kicker,
+.page-miste figcaption,
+.page-miste .index,
+.page-miste .miste-namecards-label,
+.page-miste .miste-campaign-label {
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-family: var(--miste-sans);
+  font-weight: 400;
+  color: #68645d;
+}
+.miste-study { padding: 0; }
+.miste-cover-wide {
+  position: relative;
+  width: 100vw;
+  margin: 0 0 18vh;
+}
+.miste-cover-wide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.miste-cover-wide figcaption,
+.miste-editorial figcaption {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  color: #726c63;
+}
+.miste-editorial {
+  position: relative;
+  width: min(88vw, 1600px);
+  margin-bottom: 20vh;
+}
+.miste-editorial.is-left { margin-left: 5vw; margin-right: auto; }
+.miste-editorial.is-right { margin-left: auto; margin-right: 5vw; }
+.miste-editorial img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.miste-overview {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  grid-template-rows: auto auto auto;
+  column-gap: clamp(64px, 9vw, 170px);
+  width: min(90vw, 1640px);
+  min-height: 100vh;
+  margin: 0 auto 20vh;
+  padding: clamp(70px, 10vh, 118px) 0 clamp(58px, 8vh, 96px);
+  border-top: 1px solid rgba(23, 22, 21, .2);
+  border-bottom: 1px solid rgba(23, 22, 21, .2);
+}
+.miste-overview-heading {
+  grid-column: 1;
+  align-self: start;
+}
+.miste-overview-heading h3 {
+  margin-top: clamp(72px, 11vh, 126px);
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(4.8rem, 7.2vw, 8.4rem);
+  font-weight: 300;
+  line-height: .78;
+  letter-spacing: -.045em;
+}
+.miste-overview-cn {
+  margin-top: 34px;
+  font-family: var(--miste-sans);
+  font-size: clamp(15px, 1.25vw, 20px);
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: var(--miste-subhead);
+}
+.miste-overview-question {
+  grid-column: 2;
+  align-self: end;
+  max-width: 720px;
+  padding-top: clamp(80px, 14vh, 160px);
+}
+.miste-overview-label {
+  margin-bottom: 28px;
+  font-family: var(--miste-sans);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .14em;
+  color: var(--miste-subhead);
+}
+.miste-overview-question > p:last-child {
+  font-family: var(--miste-serif-cn);
+  font-size: clamp(27px, 2.7vw, 46px);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: .035em;
+}
+.miste-overview-meta {
+  grid-column: 1;
+  display: grid;
+  gap: 0;
+  align-self: end;
+  margin-top: clamp(92px, 14vh, 170px);
+}
+.miste-overview-meta > div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(23, 22, 21, .16);
+}
+.miste-overview-meta dt,
+.miste-concept-no {
+  font-family: var(--miste-sans);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: .14em;
+  color: var(--miste-subhead);
+}
+.miste-overview-meta dd {
+  font-family: var(--miste-sans);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--miste-copy);
+}
+.miste-concept-path {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3.6vw, 64px);
+  align-self: end;
+  margin-top: clamp(92px, 14vh, 170px);
+}
+.miste-concept-path article {
+  position: relative;
+  padding-top: 22px;
+  border-top: 1px solid rgba(23, 22, 21, .32);
+}
+.miste-concept-path article:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: calc(clamp(24px, 3.6vw, 64px) * -.62);
+  width: 5px;
+  height: 5px;
+  border-top: 1px solid var(--miste-subhead);
+  border-right: 1px solid var(--miste-subhead);
+  transform: rotate(45deg);
+}
+.miste-concept-path h4 {
+  margin-top: 42px;
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(27px, 2.3vw, 39px);
+  font-weight: 400;
+  line-height: 1;
+}
+.miste-concept-path .cn {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--miste-subhead);
+}
+.miste-concept-path article > p:last-child {
+  margin-top: 30px;
+  font-family: var(--miste-sans);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--miste-copy);
+}
+.miste-overview-result {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: clamp(18px, 2.8vw, 48px);
+  margin-top: clamp(70px, 10vh, 120px);
+  font-family: var(--miste-serif-cn);
+  font-size: clamp(24px, 2.6vw, 44px);
+  font-weight: 400;
+  letter-spacing: .08em;
+}
+.miste-overview-result i {
+  font-family: var(--miste-sans);
+  font-size: .48em;
+  font-style: normal;
+  color: var(--miste-subhead);
+}
+.miste-foundation {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(70px, 10vw, 180px);
+  width: min(90vw, 1640px);
+  margin: 0 auto 20vh;
+  padding: clamp(82px, 11vh, 132px) clamp(36px, 5vw, 84px);
+  background: #24231f;
+  color: #f3f0ea;
+}
+.miste-foundation header h3 {
+  margin-top: clamp(72px, 10vh, 120px);
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(4rem, 6.2vw, 7.2rem);
+  font-weight: 300;
+  line-height: .82;
+  letter-spacing: -.04em;
+}
+.miste-foundation header > p:last-child {
+  max-width: 520px;
+  margin-top: 52px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 2;
+  color: #c9c4ba;
+}
+.miste-foundation dl {
+  align-self: end;
+}
+.miste-foundation dl > div {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 34px;
+  padding: 28px 0;
+  border-top: 1px solid rgba(243, 240, 234, .22);
+}
+.miste-foundation dt {
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .14em;
+  color: #aaa49a;
+}
+.miste-foundation dd {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #e5e0d7;
+}
+.miste-core-concept {
+  position: relative;
+  width: min(88vw, 1600px);
+  aspect-ratio: 8 / 5;
+  margin: 0 5vw 20vh;
+  background: var(--miste-paper);
+  color: var(--miste-ink);
+}
+.miste-core-meta {
+  position: absolute;
+  top: 6.2%;
+  left: 5.1%;
+  right: 5.1%;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--miste-sans);
+  font-size: 12px;
+  line-height: 1;
+}
+.miste-core-heading {
+  position: absolute;
+  top: 23.5%;
+  left: 50%;
+  width: 58%;
+  transform: translateX(-50%);
+  padding-bottom: 5.6%;
+  border-bottom: 1px solid rgba(23, 22, 21, .32);
+  text-align: center;
+}
+.miste-core-wordmark {
+  padding-left: .18em;
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(34px, 3.25vw, 54px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: .18em;
+  font-kerning: none;
+}
+.miste-core-heading h3 {
+  margin-top: 5.1%;
+  font-family: var(--miste-serif-cn);
+  font-size: clamp(30px, 3.45vw, 56px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .08em;
+}
+.miste-core-en {
+  margin-top: .5%;
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(18px, 1.8vw, 30px);
+  font-style: italic;
+  color: #514d47;
+}
+.miste-core-copy {
+  position: absolute;
+  top: 59.3%;
+  left: 50%;
+  width: 56%;
+  transform: translateX(-50%);
+  font-family: var(--miste-sans);
+  font-size: clamp(12px, 1.18vw, 19px);
+  font-weight: 300;
+  line-height: 2.45;
+  letter-spacing: .025em;
+  text-align: center;
+  color: var(--miste-copy);
+}
+.miste-visual-guideline {
+  position: relative;
+  width: min(88vw, 1600px);
+  margin: 0 5vw 20vh auto;
+  overflow: hidden;
+  background: var(--miste-paper);
+}
+.miste-visual-guideline > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.miste-guideline-label-mask,
+.miste-guideline-label {
+  position: absolute;
+  top: 4.5%;
+  right: 3.6%;
+}
+.miste-guideline-label-mask {
+  width: 19%;
+  height: 5%;
+  background: var(--miste-paper);
+}
+.miste-guideline-label {
+  z-index: 1;
+  top: 5.7%;
+  font-family: var(--miste-sans);
+  font-size: clamp(7px, .72vw, 12px);
+  line-height: 1;
+  letter-spacing: .12em;
+  color: var(--miste-ink);
+}
+.miste-image-copy-section {
+  position: relative;
+  width: min(88vw, 1600px);
+  margin: 0 0 20vh 5vw;
+  overflow: hidden;
+  background: var(--miste-paper);
+}
+.miste-artwork {
+  position: relative;
+}
+.miste-artwork > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.miste-image-copy-mask,
+.miste-image-copy {
+  position: absolute;
+}
+.miste-image-copy-mask { background: var(--miste-paper); }
+.miste-floating-index {
+  position: absolute;
+  top: 3.5%;
+  left: 3.5%;
+  z-index: 3;
+  font-family: var(--miste-sans);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: .14em;
+  color: var(--miste-subhead);
+}
+.miste-image-copy {
+  z-index: 1;
+  font-family: var(--miste-sans);
+}
+.miste-image-copy h3 {
+  font-family: var(--miste-sans);
+  font-weight: 300;
+  color: var(--miste-subhead);
+}
+.miste-image-copy p {
+  font-family: var(--miste-sans);
+  font-weight: 300;
+  color: var(--miste-copy);
+}
+.miste-product-details .miste-image-copy-mask {
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 16.8%;
+}
+.miste-product-details .miste-image-copy {
+  left: 3.5%;
+  bottom: 3.4%;
+  width: 43%;
+}
+.miste-product-details .miste-image-copy h3 {
+  font-size: clamp(18px, 1.75vw, 30px);
+  line-height: 1.5;
+  letter-spacing: .04em;
+}
+.miste-product-details .miste-image-copy p {
+  max-width: 620px;
+  margin-top: 1.2%;
+  font-size: clamp(12px, 1.05vw, 17px);
+  line-height: 1.9;
+  letter-spacing: .025em;
+}
+.miste-detail-callout {
+  position: absolute;
+  top: 44.9%;
+  left: 56.9%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 16%;
+  padding: .72% 1%;
+  background: rgba(62, 57, 51, .58);
+  font-family: var(--miste-sans);
+  font-size: clamp(7px, .7vw, 11px);
+  line-height: 1.15;
+  letter-spacing: .04em;
+  color: #fff;
+}
+.miste-interaction-study {
+  margin-left: auto;
+  margin-right: 5vw;
+}
+.miste-interaction-study .miste-image-copy-mask {
+  top: 27.7%;
+  left: 35.6%;
+  width: 35%;
+  height: 31.5%;
+}
+.miste-interaction-study .miste-image-copy {
+  top: 29.2%;
+  left: 36.8%;
+  width: 32%;
+}
+.miste-interaction-study .miste-image-copy .miste-interaction-kicker {
+  margin: 0 0 2.5%;
+  font-size: clamp(7px, .72vw, 12px);
+  line-height: 1;
+  letter-spacing: .08em;
+  color: var(--miste-subhead);
+}
+.miste-interaction-study .miste-image-copy h3 {
+  margin: 0 0 2.8%;
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(32px, 4.15vw, 68px);
+  font-weight: 300;
+  line-height: .9;
+  letter-spacing: -.035em;
+  color: var(--miste-ink);
+}
+.miste-interaction-study .miste-image-copy .miste-interaction-cn {
+  margin: 0 0 3.4%;
+  font-size: clamp(11px, 1.15vw, 18px);
+  line-height: 1.5;
+  color: var(--miste-subhead);
+}
+.miste-interaction-study .miste-interaction-body p {
+  margin: 0;
+  font-size: clamp(9px, .95vw, 15px);
+  line-height: 1.9;
+  letter-spacing: .015em;
+}
+.miste-layer-note {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(23, 22, 21, .16);
+  font-family: var(--miste-sans);
+  font-size: clamp(9px, .72vw, 12px);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: .06em;
+  color: var(--miste-subhead);
+}
+.miste-collection {
+  position: relative;
+  padding: 8vh 5vw 16vh;
+}
+.miste-collection-title {
+  position: absolute;
+  top: 8vh;
+  right: 8vw;
+  width: min(30vw, 470px);
+}
+.miste-mini-wordmark,
+.miste-wordmark,
+.miste-end-wordmark {
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-weight: 300;
+  font-kerning: none;
+}
+.miste-mini-wordmark {
+  display: block;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: .18em;
+}
+.miste-collection-title h3,
+.miste-form-copy h3,
+.miste-collateral-hero h3 {
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -.04em;
+}
+.miste-collection-title h3 {
+  margin-top: 18px;
+  font-size: clamp(3.2rem, 5.2vw, 6rem);
+  line-height: .86;
+}
+.miste-collection-title p {
+  margin-top: 20px;
+  font-family: var(--miste-sans);
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: .12em;
+  color: #68645d;
+}
+.miste-products { width: min(88vw, 1540px); margin: 17vh auto 0; }
+.miste-product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 68vh;
+  border-bottom: 1px solid rgba(23, 22, 18, .12);
+}
+.miste-product:nth-child(even) .miste-product-visual { order: 2; }
+.miste-product:nth-child(even) .miste-product-copy { order: 1; }
+.miste-product-visual { display: flex; align-items: center; justify-content: center; }
+.miste-product-visual img {
+  display: block;
+  width: min(27vw, 390px);
+  height: auto;
+}
+.miste-product-copy { width: min(420px, 76%); justify-self: center; }
+.miste-product-copy h4 {
+  margin: 0 0 20px;
+  font-family: var(--miste-sans);
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: .22em;
+}
+.miste-product-copy p {
+  font-family: var(--miste-sans);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: .04em;
+  color: #817d75;
+}
+.miste-product-copy .cn {
+  margin-bottom: 24px;
+  font-size: 18px;
+  color: #68645d;
+}
+.miste-product-copy .notes {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(23, 22, 18, .16);
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: #68645d;
+}
+.miste-form-study {
+  display: grid;
+  grid-template-columns: .68fr 1.32fr;
+  gap: clamp(56px, 7vw, 128px);
+  width: min(90vw, 1640px);
+  min-height: 100vh;
+  margin: 8vh auto 20vh;
+  padding: 6vh 0;
+  align-items: start;
+}
+.miste-form-copy h3 {
+  margin-top: clamp(90px, 14vh, 170px);
+  font-size: clamp(5.2rem, 7.4vw, 8.6rem);
+  line-height: .76;
+}
+.miste-form-copy .cn-title {
+  margin-top: 34px;
+  font-family: var(--miste-sans);
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: #68645d;
+}
+.miste-form-copy .intro {
+  max-width: 440px;
+  margin-top: 54px;
+  font-family: var(--miste-sans);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2;
+  letter-spacing: .025em;
+  color: #817d75;
+}
+.miste-views {
+  display: grid;
+  grid-template-columns: 1.28fr .64fr .8fr;
+  gap: clamp(24px, 3vw, 58px);
+  align-items: end;
+  margin-top: clamp(110px, 16vh, 190px);
+}
+.miste-view img {
+  display: block;
+  width: 100%;
+  height: 56vh;
+  object-fit: contain;
+  object-position: center bottom;
+}
+.miste-view.side img { height: 38vh; }
+.miste-view.back img { height: 46vh; }
+.miste-view .index { margin-top: 18px; }
+.miste-view .detail { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(23, 22, 18, .26); }
+.miste-view .detail h4 { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: 28px; font-weight: 400; }
+.miste-view .detail p { margin-top: 10px; font-family: var(--miste-sans); font-size: 12px; font-weight: 300; line-height: 1.8; color: var(--miste-copy); }
+.miste-collateral-hero {
+  display: grid;
+  grid-template-columns: 62% 38%;
+  min-height: 0;
+  margin-top: 8vh;
+  align-items: stretch;
+}
+.miste-collateral-hero > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+}
+.miste-collateral-hero > header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7vh 5vw;
+}
+.miste-collateral-hero h3 { margin-top: 56px; font-size: clamp(4rem, 5.2vw, 6rem); line-height: .84; }
+.miste-collateral-hero header > p:last-child { margin-top: 26px; font-family: var(--miste-sans); font-size: 17px; font-weight: 300; letter-spacing: .1em; color: var(--miste-subhead); }
+.miste-namecards {
+  min-height: 100vh;
+  padding: 8vh 6vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.miste-namecards-label { display: flex; justify-content: space-between; margin-bottom: 11vh; }
+.miste-namecards-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.4vw; }
+.miste-namecards-grid img { display: block; width: 100%; height: auto; box-shadow: 0 8px 18px rgba(66, 56, 45, .035); }
+.miste-campaign { padding-top: 10vh; }
+.miste-campaign-copy {
+  width: min(58vw, 760px);
+  margin: 28px auto 0;
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  text-align: right;
+  color: var(--miste-subhead);
+}
+.miste-social {
+  width: min(90vw, 1640px);
+  margin: 20vh auto;
+}
+.miste-social header {
+  display: grid;
+  grid-template-columns: .72fr 1.05fr .85fr;
+  gap: clamp(38px, 6vw, 110px);
+  align-items: end;
+  margin-bottom: clamp(64px, 9vh, 110px);
+}
+.miste-social header h3 {
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: clamp(4rem, 6.2vw, 7.2rem);
+  font-weight: 300;
+  line-height: .82;
+  letter-spacing: -.04em;
+}
+.miste-social header > p:last-child {
+  max-width: 410px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--miste-copy);
+}
+.miste-social > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.miste-end .miste-end-wordmark {
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-weight: 300;
+  font-kerning: none;
+  padding-left: .18em;
+  font-size: clamp(4rem, 13vw, 12rem);
+  line-height: .8;
+  letter-spacing: .18em;
+}
+.miste-end span {
+  font-family: "Cormorant Garamond MISTE", Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--miste-subhead);
+}
+.miste-end-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.miste-credits {
+  width: min(430px, 34vw);
+}
+.miste-credits > div {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(23, 22, 18, .16);
+}
+.miste-credits dt {
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: var(--miste-subhead);
+}
+.miste-credits dd {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--miste-copy);
+}
+
+@media (max-width: 760px) {
+  .miste-wordmark { font-size: 19vw; }
+  .miste-cover-wide { margin-bottom: 110px; }
+  .miste-overview {
+    display: block;
+    width: calc(100% - 40px);
+    min-height: 0;
+    margin-bottom: 120px;
+    padding: 54px 0 62px;
+  }
+  .miste-overview-heading h3 { margin-top: 76px; font-size: 19vw; line-height: .82; }
+  .miste-overview-cn { margin-top: 24px; font-size: 13px; }
+  .miste-overview-question { padding-top: 104px; }
+  .miste-overview-question > p:last-child { font-size: 24px; line-height: 1.65; }
+  .miste-overview-meta { margin-top: 86px; }
+  .miste-overview-meta > div { grid-template-columns: 72px 1fr; gap: 16px; }
+  .miste-concept-path { grid-template-columns: 1fr; gap: 62px; margin-top: 94px; }
+  .miste-concept-path article:not(:last-child)::after { display: none; }
+  .miste-concept-path h4 { margin-top: 28px; font-size: 38px; }
+  .miste-concept-path article > p:last-child { max-width: 300px; margin-top: 18px; }
+  .miste-overview-result { justify-content: space-between; gap: 0; margin-top: 94px; font-size: 22px; }
+  .miste-foundation { display: block; width: calc(100% - 20px); margin-bottom: 120px; padding: 64px 24px 72px; }
+  .miste-foundation header h3 { margin-top: 64px; font-size: 16vw; }
+  .miste-foundation header > p:last-child { margin-top: 42px; font-size: 15px; line-height: 1.9; }
+  .miste-foundation dl { margin-top: 72px; }
+  .miste-foundation dl > div { display: block; padding: 24px 0; }
+  .miste-foundation dd { margin-top: 13px; font-size: 14px; }
+  .miste-editorial { width: 92vw; margin-left: auto !important; margin-right: auto !important; margin-bottom: 120px; }
+  .miste-core-concept { width: 92vw; aspect-ratio: auto; min-height: 660px; margin: 0 auto 120px; }
+  .miste-core-meta { top: 34px; left: 24px; right: 24px; font-size: 9px; }
+  .miste-core-heading { top: 142px; width: calc(100% - 48px); padding-bottom: 52px; }
+  .miste-core-wordmark { font-size: 34px; }
+  .miste-core-heading h3 { margin-top: 42px; font-size: 28px; letter-spacing: .04em; }
+  .miste-core-en { margin-top: 8px; font-size: 18px; }
+  .miste-core-copy { top: 410px; width: calc(100% - 54px); font-size: 12px; line-height: 2.2; }
+  .miste-visual-guideline { width: 92vw; margin-left: auto; margin-right: auto; margin-bottom: 120px; }
+  .miste-guideline-label { font-size: 5px; }
+  .miste-image-copy-section { width: 92vw; margin-left: auto; margin-right: auto; margin-bottom: 120px; }
+  .miste-product-details .miste-image-copy-mask { width: 54%; height: 18.5%; }
+  .miste-product-details .miste-image-copy { position: static; width: 100%; padding: 30px 24px 36px; }
+  .miste-product-details .miste-image-copy h3 { font-size: 22px; line-height: 1.5; }
+  .miste-product-details .miste-image-copy p { margin-top: 12px; font-size: 14px; line-height: 1.8; }
+  .miste-detail-callout { gap: 1px; font-size: 4px; }
+  .miste-interaction-study .miste-image-copy { position: static; width: 100%; padding: 30px 24px 38px; }
+  .miste-interaction-study .miste-image-copy .miste-interaction-kicker { font-size: 9px; }
+  .miste-interaction-study .miste-image-copy h3 { margin-top: 18px; font-size: 44px; }
+  .miste-interaction-study .miste-image-copy .miste-interaction-cn { margin-top: 18px; font-size: 14px; }
+  .miste-interaction-study .miste-interaction-body { margin-top: 22px; }
+  .miste-interaction-study .miste-interaction-body p { font-size: 13px; line-height: 1.8; }
+  .miste-floating-index { position: static; padding: 0 0 16px; font-size: 8px; }
+  .miste-collection { padding: 60px 20px 100px; }
+  .miste-collection-title { position: static; width: 100%; margin: 70px 0 80px; }
+  .miste-products { width: 100%; margin-top: 0; }
+  .miste-product { grid-template-columns: 1fr; min-height: auto; padding: 0 0 90px; margin-bottom: 90px; }
+  .miste-product:nth-child(even) .miste-product-visual,
+  .miste-product:nth-child(even) .miste-product-copy { order: initial; }
+  .miste-product-visual img { width: min(80vw, 370px); }
+  .miste-product-copy { width: 100%; margin-top: 34px; }
+  .miste-form-study { display: block; width: calc(100% - 40px); margin-bottom: 120px; }
+  .miste-form-copy h3 { margin-top: 70px; font-size: 22vw; }
+  .miste-views { grid-template-columns: 1fr; gap: 90px; margin-top: 90px; }
+  .miste-view img, .miste-view.side img, .miste-view.back img { width: min(88vw, 520px); height: auto; margin: 0 auto; }
+  .miste-collateral-hero { display: block; min-height: 0; }
+  .miste-collateral-hero > img { height: auto; }
+  .miste-collateral-hero > header { min-height: 70vh; padding: 80px 24px; }
+  .miste-namecards { min-height: auto; padding: 100px 20px; }
+  .miste-namecards-label { margin-bottom: 60px; }
+  .miste-namecards-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .miste-campaign-copy { width: 88vw; font-size: 16px; }
+  .miste-social { width: calc(100% - 40px); margin: 120px auto; }
+  .miste-social header { display: block; margin-bottom: 54px; }
+  .miste-social header h3 { margin-top: 52px; font-size: 18vw; }
+  .miste-social header > p:last-child { margin-top: 34px; font-size: 14px; line-height: 1.9; }
+  .miste-end { min-height: 78vh; padding: 86px 20px 72px; }
+  .miste-end .miste-end-wordmark { font-size: 19vw; }
+  .miste-credits { width: 100%; }
+  .miste-credits > div { grid-template-columns: 66px 1fr; gap: 18px; }
+}

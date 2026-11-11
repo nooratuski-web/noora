@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MISTÉ Collection Layout Preview</title>
+  <style>
+    @font-face {
+      font-family: "Cormorant MISTE";
+      src: url("/fonts/CormorantGaramond-Variable.ttf") format("truetype");
+      font-weight: 300 700;
+      font-display: swap;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #f3f0ea; color: #171615; }
+    body { font-family: Arial, "Microsoft YaHei", sans-serif; }
+    .collection {
+      position: relative;
+      min-height: 100vh;
+      padding: 54px clamp(28px, 5vw, 88px) 120px;
+      overflow: hidden;
+    }
+    .section-name {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+    .brand {
+      position: absolute;
+      top: 48px;
+      right: clamp(28px, 8vw, 148px);
+      width: clamp(300px, 29vw, 470px);
+      text-align: left;
+    }
+    .brand strong {
+      display: block;
+      font-family: "Cormorant MISTE", Georgia, serif;
+      font-size: clamp(20px, 1.35vw, 25px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: .2em;
+    }
+    .brand h1 {
+      display: block;
+      margin: 19px 0 12px;
+      font-family: "Cormorant MISTE", Georgia, serif;
+      font-size: clamp(45px, 4.3vw, 72px);
+      font-weight: 300;
+      line-height: .9;
+      letter-spacing: -.025em;
+    }
+    .brand span {
+      display: block;
+      font-size: 13px;
+      letter-spacing: .18em;
+    }
+    .brand::after {
+      content: "";
+      display: block;
+      width: 88px;
+      height: 1px;
+      margin-top: 25px;
+      background: rgba(23, 22, 21, .42);
+    }
+    .products { width: min(1540px, 100%); margin: 158px auto 0; }
+    .product {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 520px;
+    }
+    .product:nth-child(even) .visual { order: 2; }
+    .product:nth-child(even) .copy { order: 1; justify-self: start; }
+    .visual {
+      position: relative;
+      width: 360px;
+      height: 390px;
+      justify-self: center;
+      overflow: hidden;
+    }
+    .visual img {
+      position: absolute;
+      width: 1024px;
+      height: 1536px;
+      max-width: none;
+    }
+    .kilig img { left: -172px; top: -63px; }
+    .serotinal img { left: -519px; top: -408px; }
+    .reverie img { left: -170px; top: -786px; }
+    .oblivion img { left: -514px; top: -1145px; }
+    .copy { width: min(410px, 76%); justify-self: center; }
+    .copy h2 {
+      margin: 0 0 22px;
+      font-size: clamp(27px, 2.1vw, 34px);
+      font-weight: 400;
+      letter-spacing: .22em;
+    }
+    .copy .cn {
+      margin: 0 0 28px;
+      font-family: "Microsoft YaHei", sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .copy .line {
+      margin: 0;
+      max-width: 24em;
+      font-size: 16px;
+      line-height: 1.8;
+      letter-spacing: .05em;
+    }
+    @media (max-width: 700px) {
+      .collection { padding: 32px 20px 80px; }
+      .brand { position: static; width: 100%; margin: 54px 0 70px; }
+      .brand h1 { max-width: 7em; }
+      .products { margin-top: 0; }
+      .product { grid-template-columns: 1fr; min-height: auto; margin-bottom: 110px; }
+      .product:nth-child(even) .visual, .product:nth-child(even) .copy { order: initial; }
+      .visual { width: 330px; max-width: 100%; transform: scale(.9); }
+      .copy { width: 100%; justify-self: start; padding: 0 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="collection">
+    <p class="section-name">02 / COLLECTION</p>
+    <header class="brand">
+      <strong>MISTÉ</strong>
+      <h1>The Memory<br />Collection</h1>
+      <span>记忆系列</span>
+    </header>
+
+    <div class="products">
+      <article class="product">
+        <div class="visual kilig"><img src="/previews/miste-collection/collection-source.png" alt="MISTÉ Kilig 香水" /></div>
+        <div class="copy">
+          <h2>KILIG</h2>
+          <p class="cn">悸动</p>
+          <p class="line">以及想念我们</p>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="visual serotinal"><img src="/previews/miste-collection/collection-source.png" alt="MISTÉ Serotinal 香水" /></div>
+        <div class="copy">
+          <h2>SEROTINAL</h2>
+          <p class="cn">夏末</p>
+          <p class="line">夏末是倦怠与期待的交织</p>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="visual reverie"><img src="/previews/miste-collection/collection-source.png" alt="MISTÉ Reverie 香水" /></div>
+        <div class="copy">
+          <h2>REVERIE</h2>
+          <p class="cn">遐想</p>
+          <p class="line">我时常幻想</p>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="visual oblivion"><img src="/previews/miste-collection/collection-source.png" alt="MISTÉ Oblivion 香水" /></div>
+        <div class="copy">
+          <h2>OBLIVION</h2>
+          <p class="cn">忘却</p>
+          <p class="line">我好像做了一个很长的梦，<br />你越来越模糊了</p>
+        </div>
+      </article>
+    </div>
+  </main>
+</body>
+</html>

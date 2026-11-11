@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-pages-test
+previews
+.openai
+tmp-interaction-steps.png
+tmp
+.taste-skill
+*.before-*
+.DS_Store
+*.log
+pnpm-lock.yaml
+.context
+codrops-curriculum.md
