@@ -4,6 +4,7 @@ import { Controller } from "./controller.js";
 import { Cursor } from "./cursor.js";
 import { Preloader } from "./preloader.js";
 import { withBase } from "./paths.js";
+import "./resume.css";
 
 async function start() {
   const lenis = new Lenis({

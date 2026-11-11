@@ -1,9 +1,9 @@
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { aboutHome, home } from "./pages/home.js";
+import { home } from "./pages/home.js";
 import { inner } from "./pages/inner.js";
 import { miste } from "./pages/miste.js";
-import { resume } from "./pages/resume.js";
+import { mountResume, resume, unmountResume } from "./pages/resume.js";
 import { index as indexPage, IndexFloat } from "./pages/index-page.js";
 import { Carousel } from "./carousel.js";
 import { MAIN_COUNT, SATELLITES_PER_IMAGE, mainIdx, satIdx } from "./gpu.js";
@@ -182,11 +182,11 @@ function animateChromeIn(selector, delay) {
 // ---------------------------------------------------------------------------
 
 const ROUTES = {
-  "/": { page: "about", view: aboutHome, image: null },
+  "/": { page: "main", view: home, image: null },
   "/work": { page: "main", view: home, image: null },
   "/resume": { page: "resume", view: resume, image: null },
   "/index": { page: "index", view: indexPage, image: null },
-  "/1": { page: "inner", view: inner(0), image: 0 },
+  "/1": { page: "resume", view: resume, image: null },
   "/2": { page: "inner", view: inner(1), image: 1 },
   "/3": { page: "miste", view: miste, image: 2 },
   "/4": { page: "inner", view: inner(3), image: 3 },
@@ -355,6 +355,7 @@ export class Controller {
       syncResumeHeight();
       sec._heightObserver = new ResizeObserver(syncResumeHeight);
       sec._heightObserver.observe(sec);
+      mountResume(sec);
       this.lenis.start();
       this.lenis.scrollTo(0, { immediate: true, force: true });
       return;
@@ -427,6 +428,7 @@ export class Controller {
     if (state.page === "resume") {
       const sec = this.app.querySelector('[data-page="resume"]');
       sec?._heightObserver?.disconnect();
+      unmountResume(sec);
     }
     for (const plane of this.gpu.planes) {
       plane.trackedEl = null;
@@ -436,9 +438,7 @@ export class Controller {
   _setActiveNav(pageKey) {
     // Only the main and index pages have a corresponding nav link; inner
     // pages leave the nav with nothing active.
-    const activeKey = ["about", "main", "index", "resume"].includes(pageKey)
-      ? pageKey
-      : null;
+    const activeKey = pageKey === "main" ? "main" : pageKey === "index" ? "index" : null;
     document.body.dataset.currentPage = pageKey;
     const links = document.querySelectorAll("#nav a[data-nav-key]");
     for (const a of links) {

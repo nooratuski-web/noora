@@ -4,95 +4,70 @@
   "title": "Design System: Noora Portfolio Archive",
   "extensions": {
     "colorMeta": {
-      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#eee9df" },
-      "paper-shadow": { "role": "neutral", "displayName": "Paper Shadow", "canonical": "#d2ccc1" },
-      "ink": { "role": "primary", "displayName": "Archive Ink", "canonical": "#171717" },
-      "burgundy": { "role": "secondary", "displayName": "Deep Burgundy", "canonical": "#5a1824" },
-      "annotation-pink": { "role": "secondary", "displayName": "Annotation Pink", "canonical": "#e98db2" }
+      "archive-light": { "role": "neutral", "displayName": "Archive Light", "canonical": "#f4f5f5" },
+      "archive-pale": { "role": "neutral", "displayName": "Archive Pale", "canonical": "#c8cdce" },
+      "archive-steel": { "role": "neutral", "displayName": "Archive Steel", "canonical": "#9da3a4" },
+      "archive-ink": { "role": "primary", "displayName": "Archive Ink", "canonical": "#3f373a" },
+      "archive-pink": { "role": "primary", "displayName": "Archive Pink", "canonical": "#b84f69" },
+      "archive-bright-pink": { "role": "secondary", "displayName": "Bright Annotation Pink", "canonical": "#db7f8e" },
+      "archive-night": { "role": "secondary", "displayName": "Archive Night", "canonical": "#604d53" }
     },
     "typographyMeta": {
-      "display-home": { "displayName": "Homepage Display", "purpose": "The oversized two-line personal introduction." },
-      "display-resume": { "displayName": "Resume Display", "purpose": "The oversized resume masthead." },
-      "body": { "displayName": "Body", "purpose": "Resume and supporting archive copy." },
-      "label": { "displayName": "Archive Label", "purpose": "Navigation, metadata, roles, and section labels." },
-      "annotation": { "displayName": "Handwritten Annotation", "purpose": "Brief personal notes only." }
+      "display": { "displayName": "Archive Display", "purpose": "Profile and major archive headings." },
+      "body": { "displayName": "Archive Body", "purpose": "Biography, education, project, and interest copy." },
+      "label": { "displayName": "Archive Label", "purpose": "Tabs, metadata, indices, and object controls." },
+      "annotation": { "displayName": "Handwritten Annotation", "purpose": "Brief personal asides only." }
     },
     "shadows": [],
     "motion": [
-      { "name": "control-color", "value": "0.25s ease", "purpose": "Homepage archive-action color inversion." },
-      { "name": "nav-underline", "value": "0.45s cubic-bezier(0.77, 0, 0.18, 1)", "purpose": "Fixed navigation underline reveal." }
+      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Content reveals, tabs, cat strip, and preview entrance." },
+      { "name": "ease-in-out", "value": "cubic-bezier(0.77, 0, 0.175, 1)", "purpose": "Artist-book image transition." },
+      { "name": "reveal", "value": "500ms cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Opacity and 5% vertical content reveal." },
+      { "name": "reduced-motion", "value": "200ms ease opacity/color only", "purpose": "Removes transforms, text loop, scramble, and preview animation." }
     ],
-    "breakpoints": [
-      { "name": "archive-stack", "value": "820px" },
-      { "name": "work-mobile", "value": "600px" }
-    ]
+    "breakpoints": [{ "name": "archive-stack", "value": "900px" }]
   },
   "components": [
     {
-      "name": "Primary Archive Action",
-      "kind": "button",
-      "refersTo": "archive-action",
-      "description": "Primary pill action used on the personal homepage.",
-      "html": "<a class=\"ds-archive-action\" href=\"#\">查看作品</a>",
-      "css": ".ds-archive-action { display:inline-block; min-width:112px; padding:12px 18px; border:1px solid rgba(23,23,23,.5); border-radius:999px; background:#171717; color:#eee9df; font:12px system-ui,-apple-system,sans-serif; text-align:center; text-decoration:none; transition:background-color .25s ease,color .25s ease; } .ds-archive-action:hover { background:transparent; color:#171717; } .ds-archive-action:focus-visible { outline:2px solid #e98db2; outline-offset:5px; }"
-    },
-    {
-      "name": "Fixed Archive Navigation",
+      "name": "Archive Tab",
       "kind": "nav",
-      "description": "Compact fixed navigation with restrained opacity and an animated underline.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link-active\" href=\"#\">Home</a><a class=\"ds-nav-link\" href=\"#\">Work</a><a class=\"ds-nav-link\" href=\"#\">Resume</a></nav>",
-      "css": ".ds-nav { display:flex; gap:.35rem; font:400 .875rem/1 system-ui,-apple-system,sans-serif; letter-spacing:.02em; } .ds-nav-link { position:relative; color:#171717; opacity:.5; text-decoration:none; transition:opacity .15s ease; } .ds-nav-link::before { content:''; position:absolute; left:0; bottom:-3px; width:100%; height:1px; background:currentColor; transform:scaleX(0); transform-origin:right center; transition:transform .45s cubic-bezier(.77,0,.18,1); } .ds-nav-link:hover,.ds-nav-link-active { opacity:1; } .ds-nav-link:hover::before,.ds-nav-link-active::before { transform:scaleX(1); transform-origin:left center; } .ds-nav-link:focus-visible { outline:2px solid #e98db2; outline-offset:5px; }"
+      "refersTo": "archive-tab",
+      "description": "Fixed folder-like section tab with active and hover states.",
+      "html": "<nav class=\"ds-tabs\"><a class=\"ds-tab ds-active\" href=\"#\">PROFILE</a><a class=\"ds-tab\" href=\"#\">OFF DUTY</a></nav>",
+      "css": ".ds-tabs{display:flex;gap:2px;align-items:flex-end}.ds-tab{min-width:132px;padding:13px 18px 11px;border-radius:0 0 12px 12px;background:rgba(157,163,164,.94);color:#3f373a;font:400 10px/1 system-ui,sans-serif;letter-spacing:.13em;text-align:center;text-decoration:none;transform:translateY(-5px);transition:transform 200ms cubic-bezier(.23,1,.32,1),background-color 200ms ease,color 200ms ease}.ds-tab:hover,.ds-tab.ds-active{transform:translateY(0)}.ds-tab.ds-active{background:#c8cdce;color:#b84f69}.ds-tab:focus-visible{outline:2px solid #b84f69;outline-offset:5px}"
     },
     {
-      "name": "Resume Sheet",
-      "kind": "card",
-      "refersTo": "resume-sheet",
-      "description": "Warm paper resume container separated by tonal contrast and fine rules rather than shadow.",
-      "html": "<section class=\"ds-resume-sheet\"><aside class=\"ds-resume-profile\">PROFILE</aside><div class=\"ds-resume-content\">RESUME CONTENT</div></section>",
-      "css": ".ds-resume-sheet { display:grid; grid-template-columns:minmax(180px,32%) 1fr; min-height:300px; overflow:hidden; border-radius:20px 20px 0 0; background:#eee9df; color:#171717; font-family:system-ui,-apple-system,sans-serif; } .ds-resume-profile { padding:32px; border-right:1px solid rgba(23,23,23,.16); font-size:10px; letter-spacing:.12em; } .ds-resume-content { padding:48px; font-size:14px; line-height:1.9; } @media (max-width:520px) { .ds-resume-sheet { display:block; border-radius:14px 14px 0 0; } .ds-resume-profile { border-right:0; border-bottom:1px solid rgba(23,23,23,.16); } }"
+      "name": "Artist Book Toggle",
+      "kind": "button",
+      "description": "Physical archive-object toggle between closed and open book imagery.",
+      "html": "<button class=\"ds-book\" type=\"button\"><span class=\"ds-object\">ARTIST BOOK</span><span class=\"ds-label\">OPEN THE ARCHIVE</span></button>",
+      "css": ".ds-book{position:relative;width:320px;height:240px;padding:0;border:0;background:transparent;color:#3f373a;cursor:pointer}.ds-object{display:grid;place-items:center;width:100%;height:100%;border:1px solid #9da3a4;background:#f4f5f5;font:430 30px/1 'Cormorant Garamond MISTE',Georgia,serif;transform:rotate(-4deg) scale(.96);transition:opacity 500ms cubic-bezier(.77,0,.175,1),transform 500ms cubic-bezier(.77,0,.175,1)}.ds-label{position:absolute;right:3%;bottom:4%;padding:9px 12px;background:#3f373a;color:#f4f5f5;font:400 9px/1 system-ui,sans-serif;letter-spacing:.12em}.ds-book:hover .ds-object{transform:rotate(-2deg) scale(1)}.ds-book:focus-visible{outline:2px solid #b84f69;outline-offset:5px}"
+    },
+    {
+      "name": "Experience Row",
+      "kind": "button",
+      "description": "Ruled project selector that drives the adjacent preview.",
+      "html": "<button class=\"ds-row ds-active\" type=\"button\"><span class=\"ds-number\">01</span><span class=\"ds-name\">MORO</span><span>PERSONAL PROJECT</span></button>",
+      "css": ".ds-row{width:100%;display:grid;grid-template-columns:34px minmax(130px,.75fr) minmax(180px,1fr);gap:16px;padding:23px 0;border:0;border-bottom:1px solid #9da3a4;background:none;color:#3f373a;text-align:left}.ds-number{color:#9da3a4;font-size:10px}.ds-name{font:400 24px/.95 'Cormorant Garamond MISTE',Georgia,serif;transition:color 200ms ease}.ds-row:hover .ds-name,.ds-row:focus .ds-name,.ds-row.ds-active .ds-name{color:#b84f69}.ds-row:focus-visible{outline:2px solid #b84f69;outline-offset:5px}"
     },
     {
       "name": "Handwritten Annotation",
       "kind": "custom",
-      "description": "Short, rotated pink personal aside used over portrait-led archive surfaces.",
-      "html": "<p class=\"ds-annotation\">A little curious,<br>always creating.</p>",
-      "css": ".ds-annotation { margin:0; color:#e98db2; font-family:'Segoe Print','Bradley Hand',cursive; font-size:28px; font-weight:600; line-height:1.08; letter-spacing:-.04em; transform:rotate(-5deg); }"
-    },
-    {
-      "name": "Selected Work Folder Tab",
-      "kind": "custom",
-      "refersTo": "folder-tab",
-      "description": "Folder-like bottom tab linking the personal homepage to selected work.",
-      "html": "<a class=\"ds-folder-tab\" href=\"#\">SELECTED WORK</a>",
-      "css": ".ds-folder-tab { display:inline-block; min-width:210px; padding:14px 28px 12px; border-radius:18px 18px 0 0; background:#171717; color:#eee9df; font:400 10px/1 system-ui,-apple-system,sans-serif; letter-spacing:.14em; text-align:center; text-decoration:none; } .ds-folder-tab:focus-visible { outline:2px solid #e98db2; outline-offset:5px; }"
+      "description": "Bright-pink rotated personal aside.",
+      "html": "<p class=\"ds-note\">A little curious,<br>always creating.</p>",
+      "css": ".ds-note{margin:0;color:#db7f8e;font:600 32px/1.05 'Segoe Print','Bradley Hand',cursive;letter-spacing:-.03em;transform:rotate(-6deg)}"
     }
   ],
   "narrative": {
-    "northStar": "The Personal Editorial Archive",
-    "overview": "The homepage, work index, and resume form one restrained portfolio extension: warm paper surfaces and oversized serif titles frame the personal archive, while compact sans-serif labels keep navigation and metadata practical. Burgundy supplies emphasis inside the display typography, and pink handwriting appears as an occasional human annotation rather than a general-purpose accent. This document records the implemented extension; it does not replace the wider portfolio's existing project-specific visual languages. The resume is intentionally structural at this stage: its factual content remains pending and must not be inferred from the layout.",
-    "keyCharacteristics": [
-      "Warm paper and near-black ink establish an editorial base.",
-      "Large, tightly set serif display type contrasts with small tracked sans-serif labels.",
-      "Burgundy emphasis and pink handwriting are sparse, role-specific accents.",
-      "Layouts are spacious and asymmetrical, with the resume becoming a contained paper sheet."
-    ],
+    "northStar": "The Steel-Gray Personal Archive",
+    "overview": "The /1 resume is a six-section personal archive built from cool paper gray, industrial steel, muted plum, and editorial pink. It is a distinct extension within the broader portfolio, not a replacement for the white image-led work index or project-specific case studies.",
+    "keyCharacteristics": ["Six full-viewport editorial sections.", "Fixed folder-like archive tabs.", "Muted pink for structure and bright pink for expression.", "Motion with complete reduced-motion fallbacks."],
     "rules": [
-      { "name": "The Annotation Rule", "body": "Pink belongs to handwritten or interaction-level marks; it is not a fill color for large surfaces.", "section": "colors" },
-      { "name": "The Extension Rule", "body": "Preserve project-specific case-study palettes. These archive colors govern the personal homepage and resume, not every portfolio project.", "section": "colors" },
-      { "name": "The Three-Voice Rule", "body": "Use serif for display, sans-serif for information, and handwriting only for a brief personal aside.", "section": "typography" },
-      { "name": "The Paper-Not-Shadow Rule", "body": "Separate archive surfaces with tone, thin borders, and overlap; do not add floating card shadows.", "section": "elevation" }
+      { "name": "The Pink Hierarchy Rule", "body": "Use muted pink for structure and active state; reserve bright pink for expressive emphasis and handwriting.", "section": "colors" },
+      { "name": "The Extension Rule", "body": "Keep these colors on the personal archive and preserve project-specific palettes.", "section": "colors" },
+      { "name": "The Flat Archive Rule", "body": "Separate sections through tone, crop, rule, and overlap; do not add card shadows.", "section": "elevation" }
     ],
-    "dos": [
-      "Do preserve generous negative space around display type and portrait imagery.",
-      "Do keep burgundy inside the serif emphasis role and pink inside annotation or interaction roles.",
-      "Do retain the work page's sparse image-led behavior as part of the same archive, even though its canvas remains white.",
-      "Do leave resume facts explicitly pending until verified content is available."
-    ],
-    "donts": [
-      "Don't turn this extension into a replacement identity for individual case studies.",
-      "Don't use handwriting for long copy, labels, or navigation.",
-      "Don't add shadows, gradients, or rounded cards that are absent from the implemented archive.",
-      "Don't fabricate resume details, credentials, dates, tools, or contact information."
-    ]
+    "dos": ["Do synchronize tabs with the visible section.", "Do preserve reduced-motion alternatives.", "Do keep the broader portfolio visually autonomous."],
+    "donts": ["Don't convert sections into a card grid.", "Don't use bright pink for large backgrounds.", "Don't treat /1 as a global portfolio template."]
   }
 }

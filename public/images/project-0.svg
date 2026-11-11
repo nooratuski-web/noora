@@ -1,1 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="667" height="1000" viewBox="0 0 667 1000"><rect width="667" height="1000" fill="#e7e3d8"/><g fill="#222b25" font-family="Arial, sans-serif"><text x="40" y="65" font-size="16" letter-spacing="3">DESIGN STUDY — 01</text><circle cx="333.5" cy="500.0" r="213.44" fill="#222b25"/><rect x="313.49" y="250.0" width="46.690000000000005" height="550.0" fill="#e7e3d8"/><text x="40" y="905" font-size="38.686" font-weight="bold" letter-spacing="-2">FORM / 01</text><text x="40" y="955" font-size="13" letter-spacing="2">CONCEPT PROJECT / 2026</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="667" height="1000" viewBox="0 0 667 1000">
+  <defs>
+    <clipPath id="portrait"><rect x="214" y="184" width="407" height="584"/></clipPath>
+  </defs>
+  <rect width="667" height="1000" fill="#c8cdce"/>
+  <path d="M0 0h667v34H0z" fill="#9da3a4"/>
+  <path d="M246 0h175v52H246z" fill="#9da3a4"/>
+  <g font-family="Arial, sans-serif" fill="#3f373a">
+    <text x="38" y="83" font-size="14" letter-spacing="3">PERSONAL ARCHIVE</text>
+    <text x="628" y="83" font-size="12" text-anchor="end" letter-spacing="2">FILE 2026—001</text>
+    <text x="333.5" y="31" font-size="10" text-anchor="middle" letter-spacing="2">PROFILE</text>
+  </g>
+  <text x="34" y="230" fill="#db7f8e" font-family="Georgia, serif" font-size="103" font-style="italic" letter-spacing="-5">NOORA</text>
+  <image href="noora-portrait.jpg" x="214" y="184" width="407" height="584" preserveAspectRatio="xMidYMid slice" clip-path="url(#portrait)"/>
+  <path d="M38 822h591" stroke="#f4f5f5" stroke-width="1"/>
+  <g font-family="Arial, sans-serif" fill="#3f373a">
+    <text x="38" y="884" font-size="39" font-weight="700" letter-spacing="-2">NOORA / 01</text>
+    <text x="38" y="931" font-size="13" letter-spacing="2">PERSONAL ARCHIVE · 2026</text>
+    <text x="38" y="963" font-size="10" letter-spacing="1.8">GRAPHIC DESIGN / PROFILE</text>
+  </g>
+  <circle cx="18" cy="318" r="5" fill="#f4f5f5"/><circle cx="18" cy="350" r="5" fill="#f4f5f5"/>
+</svg>

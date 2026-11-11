@@ -1,24 +1,20 @@
 ---
 name: Noora Portfolio Archive
-description: A restrained editorial portfolio archive with warm paper, serif display type, and handwritten annotations.
+description: A steel-gray and pink editorial personal archive within a broader image-led design portfolio.
 colors:
-  paper: "#eee9df"
-  paper-shadow: "#d2ccc1"
-  ink: "#171717"
-  burgundy: "#5a1824"
-  annotation-pink: "#e98db2"
+  archive-light: "#f4f5f5"
+  archive-pale: "#c8cdce"
+  archive-steel: "#9da3a4"
+  archive-ink: "#3f373a"
+  archive-pink: "#b84f69"
+  archive-bright-pink: "#db7f8e"
+  archive-night: "#604d53"
 typography:
-  display-home:
+  display:
     fontFamily: "Cormorant Garamond MISTE, Georgia, serif"
-    fontSize: "clamp(76px, 10.4vw, 168px)"
+    fontSize: "clamp(4rem, 9vw, 6rem)"
     fontWeight: 430
-    lineHeight: 0.72
-    letterSpacing: "-0.04em"
-  display-resume:
-    fontFamily: "Cormorant Garamond MISTE, Georgia, serif"
-    fontSize: "clamp(72px, 10vw, 156px)"
-    fontWeight: 450
-    lineHeight: 0.68
+    lineHeight: 0.77
     letterSpacing: "-0.04em"
   body:
     fontFamily: "system-ui, -apple-system, sans-serif"
@@ -29,162 +25,180 @@ typography:
     fontFamily: "system-ui, -apple-system, sans-serif"
     fontSize: "10px"
     fontWeight: 400
-    letterSpacing: "0.16em"
+    letterSpacing: "0.13em"
   annotation:
     fontFamily: "Segoe Print, Bradley Hand, cursive"
     fontWeight: 600
     lineHeight: 1.08
 rounded:
   square: "0"
-  sheet: "20px 20px 0 0"
-  tab: "18px 18px 0 0"
-  pill: "999px"
+  archive-tab: "0 0 12px 12px"
 spacing:
-  compact: "12px"
-  control-x: "18px"
-  section: "58px"
-  page-x: "clamp(28px, 6vw, 96px)"
+  section-x: "clamp(24px, 6vw, 96px)"
+  section-top: "clamp(86px, 9vw, 132px)"
+  section-bottom: "clamp(72px, 8vw, 112px)"
 components:
-  archive-action:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.pill}"
-    padding: "12px 18px"
-  folder-tab:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.tab}"
-    padding: "14px 28px 12px"
-  resume-sheet:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sheet}"
+  archive-tab:
+    backgroundColor: "{colors.archive-steel}"
+    textColor: "{colors.archive-ink}"
+    rounded: "{rounded.archive-tab}"
+    padding: "13px 18px 11px"
+  archive-tab-active:
+    backgroundColor: "{colors.archive-pale}"
+    textColor: "{colors.archive-pink}"
+    rounded: "{rounded.archive-tab}"
+    padding: "13px 18px 11px"
+  archive-section:
+    backgroundColor: "{colors.archive-light}"
+    textColor: "{colors.archive-ink}"
+    padding: "clamp(86px, 9vw, 132px) clamp(24px, 6vw, 96px) clamp(72px, 8vw, 112px)"
 ---
 
 # Design System: Noora Portfolio Archive
 
 ## Overview
 
-**Creative North Star: "The Personal Editorial Archive"**
+**Creative North Star: "The Steel-Gray Personal Archive"**
 
-The homepage, work index, and résumé form one restrained portfolio extension: warm paper surfaces and oversized serif titles frame the personal archive, while compact sans-serif labels keep navigation and metadata practical. Burgundy supplies emphasis inside the display typography, and pink handwriting appears as an occasional human annotation rather than a general-purpose accent.
+The `/1` résumé is a six-section personal archive built from cool paper gray, industrial steel, muted plum, and editorial pink. Oversized serif headings, compact indexed labels, documentary imagery, handwritten asides, and object-based interactions let personal interests and professional experience coexist without turning the page into a conventional résumé sheet.
 
-This document records the implemented extension; it does not replace the wider portfolio's existing project-specific visual languages. The résumé is intentionally structural at this stage: its factual content remains pending and must not be inferred from the layout.
+This is a distinct extension within the broader portfolio, not a replacement for it. The main work index remains sparse, white, image-led, and spatial; project case studies retain their own visual languages. Archive tokens govern the personal résumé surface and should not be imposed on MISTÉ or other case studies.
 
 **Key Characteristics:**
 
-- Warm paper and near-black ink establish an editorial base.
-- Large, tightly set serif display type contrasts with small tracked sans-serif labels.
-- Burgundy emphasis and pink handwriting are sparse, role-specific accents.
-- Layouts are spacious and asymmetrical, with the résumé becoming a contained paper sheet.
+- Six full-viewport editorial sections: profile, off duty, midnight poem, education, experience, and skills/contact.
+- Fixed folder-like tabs connect five named archive destinations; the poem remains part of Off Duty.
+- Steel-gray surfaces alternate with a pale profile field, a plum night interlude, and a light experience field.
+- Pink is used for emphasis, active state, annotation, and selected details rather than broad surface fills.
+- Motion reveals content and physical archive objects, with a complete reduced-motion fallback.
 
 ## Colors
 
-The palette is paper-led and quiet, with one dark typographic accent and one handwritten annotation color.
+The archive palette is cool and material: pale paper, steel gray, charcoal-plum ink, and two controlled pink accents.
 
 ### Primary
 
-- **Archive Ink:** The principal text, image-ground, button, and tab color.
-- **Warm Paper:** The homepage field and résumé sheet surface.
+- **Archive Ink:** Primary text and dark interaction labels.
+- **Archive Pink:** Active navigation, secondary emphasis, dates, indices, and selected experience names.
 
 ### Secondary
 
-- **Deep Burgundy:** Emphasis inside the large serif name and résumé title only.
-- **Annotation Pink:** Handwritten notes, the portrait arrow, selection, and focus emphasis.
+- **Bright Annotation Pink:** Display emphasis, handwriting, arrows, poem accents, and contact emphasis.
+- **Archive Night:** The midnight-poem field, supporting light text and vertical Japanese verse.
 
 ### Neutral
 
-- **Paper Shadow:** The outer résumé-page field that visually separates the inner paper sheet.
+- **Archive Light:** Light sections, light-on-dark text, and the experience surface.
+- **Archive Pale:** Profile and skills surfaces, plus the active archive tab.
+- **Archive Steel:** Off-duty surface, rules, inactive tabs, and quiet metadata.
 
 ### Named Rules
 
-**The Annotation Rule.** Pink belongs to handwritten or interaction-level marks; it is not a fill color for large surfaces.
+**The Pink Hierarchy Rule.** Use muted pink for structure and active state; reserve bright pink for expressive emphasis and handwriting.
 
-**The Extension Rule.** Preserve project-specific case-study palettes. These archive colors govern the personal homepage and résumé, not every portfolio project.
+**The Section Field Rule.** Each major section has one dominant flat field. Use imagery, rules, and typography for hierarchy rather than card stacks.
+
+**The Extension Rule.** Keep these colors on the personal archive. Preserve the wider portfolio's white work index and project-specific palettes.
 
 ## Typography
 
 **Display Font:** Cormorant Garamond MISTE (with Georgia and serif fallbacks)  
 **Body Font:** System UI (with platform sans-serif fallbacks)  
+**Poem Fonts:** Noto Serif SC and Noto Serif JP (with serif fallbacks)
 **Annotation Font:** Segoe Print (with Bradley Hand and cursive fallbacks)
 
-**Character:** High-contrast serif display type gives the personal pages their editorial identity. Small sans-serif text carries navigation, labels, and body copy; handwriting is deliberately informal and rare.
+**Character:** Large, tightly set serif typography gives the archive an editorial voice. Neutral sans-serif carries explanatory text, metadata, navigation, and indexes. Serif CJK text slows the poem into a literary interlude, while handwriting is limited to personal asides.
 
 ### Hierarchy
 
-- **Homepage Display** (430 weight, fluid oversized scale, 0.72 line-height): the two-line personal introduction.
-- **Résumé Display** (450 weight, fluid oversized scale, 0.68 line-height): the centered résumé title on wide screens and left-aligned title on mobile.
-- **Body** (400 weight, 14px, 1.9 line-height): résumé copy, kept to a maximum of 66 characters per line in the implemented content region.
-- **Label** (400 weight, 10px, tracked): roles, archive metadata, and compact section labels.
-- **Annotation** (600 weight, 1.08 line-height): short handwritten portrait and résumé notes only.
+- **Primary Display** (430 weight, fluid 4rem–6rem range, 0.77 line-height): profile introduction.
+- **Section Display** (fluid, generally 3.1rem–6rem, approximately 0.78–0.85 line-height): Off Duty, Education, Experience, Skills, and contact headings.
+- **Poem Display** (450 weight, fluid 2.5rem–5.5rem, 1.12 line-height): Chinese poem title.
+- **Body** (13–16px, 1.8–1.9 line-height): biography, education, project explanation, and interest copy.
+- **Label** (9–10px, widely tracked): tabs, metadata, dates, indices, and object controls.
+- **Annotation** (600 weight, 1.05–1.4 line-height): portrait caption, bard note, and closing thanks only.
 
 ### Named Rules
 
-**The Three-Voice Rule.** Use serif for display, sans-serif for information, and handwriting only for a brief personal aside.
+**The Four-Voice Rule.** Serif leads, sans-serif explains, CJK serif carries poetry, and handwriting adds a short personal aside.
 
 ## Layout
 
-The homepage uses a two-column composition with text beside a tall portrait, separated by a wide fluid gap. Page padding grows fluidly up to 96px. The résumé begins with a three-column header, followed by a two-column paper sheet: profile information occupies roughly one third and content occupies the remainder. The work page retains its sparse image-led carousel and fixed archive navigation rather than adopting the résumé sheet.
+Every archive section spans the viewport and uses fluid horizontal padding from 24px to 96px. Desktop layouts vary by content: Profile is a two-column copy/portrait split; Off Duty is a wide collage plus narrower text column; the poem pairs horizontal Chinese text with vertical Japanese text; Education and Experience use three columns; Skills uses paired columns followed by a five-step work-style row and full-bleed contact footer.
 
-At 820px and below, the homepage becomes a vertical composition, the portrait narrows to 88% and aligns right, and the résumé header and sheet collapse to single columns. At 600px and below, the work carousel imagery expands from 23vw to 52vw while fixed navigation moves to 16px side insets.
+The fixed archive tabs sit at the top center and track the visible section. PROFILE, OFF DUTY, EDUCATION, EXPERIENCE, and SKILLS are destinations; the midnight poem shares the OFF DUTY active state.
+
+At 900px and below, tabs become a horizontally scrollable row, section padding becomes 88px 20px 78px, and all multi-column content sections stack. The profile portrait remains right-aligned at 90% width; poem translation keeps its vertical setting; experience rows simplify to two columns; skills and work-style content collapse to single columns.
 
 ## Elevation & Depth
 
-The archive uses no box shadows. Depth comes from tonal separation between the paper sheet and its darker surrounding field, image contrast, borders, overlap, and fixed foreground navigation.
+The archive uses no box-shadow vocabulary. Depth comes from alternating flat section fields, photographic contrast, clipped collage edges, thin steel rules, object rotation, and the fixed tabs overlapping the page edge.
 
 ### Named Rules
 
-**The Paper-Not-Shadow Rule.** Separate archive surfaces with tone, thin borders, and overlap; do not add floating card shadows.
+**The Flat Archive Rule.** Separate sections and objects through tone, crop, rule, and overlap; do not add floating card shadows.
 
 ## Shapes
 
-The base work interface remains square and image-led. Personal archive controls use full pills, while the folder tab and résumé sheet round only their upper corners so they still read as physical filing and paper forms. Images remain rectangular without decorative rounding.
+Most content is square-edged and editorial. The fixed archive tabs are the deliberate exception: their lower corners are rounded to read as file-folder tabs hanging from the top edge. Portraits, preview windows, collage fields, rules, and contact blocks remain rectangular.
 
 ## Components
 
-### Archive Actions
+### Fixed Archive Tabs
 
-- **Shape:** Full pill with a fine ink border.
-- **Primary:** Ink fill with paper text; the first homepage action is primary at rest.
-- **Secondary:** Transparent paper surface with ink text.
-- **Hover / Focus:** Secondary actions invert to ink and paper; keyboard focus uses the pink outline treatment already implemented globally.
+- **Shape:** Top-anchored tabs with rounded lower corners.
+- **Default:** Steel background, ink label, and a slight upward offset.
+- **Active / Hover:** Active tabs settle flush, switch to pale gray, and use muted pink text; precise-pointer hover also settles the tab.
+- **Mobile:** Horizontally scrollable, left-aligned, with a 116px minimum width.
 
-### Fixed Navigation
+### Section Reveal
 
-- **Style:** Small sans-serif links at the upper-left and footer edges, initially muted through opacity.
-- **Hover / Active:** Text reaches full opacity and a thin underline grows from left to right.
-- **Mobile:** Side insets tighten while typography remains compact.
+- **Default:** Content is readable without JavaScript.
+- **Enhanced State:** With JavaScript, reveal elements begin transparent and 5% lower, then resolve over 500ms with the archive ease-out curve.
+- **Reduced Motion:** Elements remain visible and unshifted; only a short opacity transition remains.
 
-### Resume Sheet
+### Profile Portrait
 
-- **Corner Style:** Upper corners only, square at the bottom.
-- **Background:** Warm paper over the darker paper-shadow field.
-- **Depth Strategy:** Tonal layering and fine internal dividers, with no shadow.
-- **Structure:** Profile column and content column on wide screens; one continuous column on mobile.
-- **Content Status:** Pending facts remain visibly marked as pending until confirmed source content is supplied.
+- **Style:** Tall rectangular night portrait with bright-pink handwritten caption and arrow.
+- **Mobile:** Narrows to 90% and aligns to the right beneath the profile copy.
 
-### Handwritten Annotation
+### Off-Duty Collage and Cat Track
 
-- **Style:** Pink cursive text, slightly rotated, paired with a hand-drawn arrow only on the portrait treatment.
-- **Usage:** One short personal aside per major personal surface; it is not body copy or navigation.
+- **Style:** Wide documentary collage extends into the section gutter; an animated interest loop crosses the image.
+- **Behavior:** The black cat strip translates into place when Off Duty enters view.
+- **Reduced Motion:** The loop is removed and the cat image remains untransformed.
 
-### Folder Tab
+### Artist Book Toggle
 
-- **Style:** Ink background, paper text, tracked uppercase label, and rounded top corners.
-- **Placement:** Attached to the bottom edge of the homepage as a direct route to selected work.
+- **Style:** Two transparent object images occupy the same frame with a compact ink label.
+- **Behavior:** Click toggles closed/open images through opacity, rotation, and scale over 500ms; the accessible pressed state and label change with the object.
+- **Reduced Motion:** Rotation and scale are removed; the object changes with opacity only.
+
+### Experience Rows and Preview
+
+- **Style:** Ruled rows combine an index, serif project name, project metadata, and optional detail.
+- **Behavior:** Hover or keyboard focus selects the row, colors its name pink, and swaps the adjacent project preview with a brief 200ms entrance.
+- **Reduced Motion:** Preview swapping has no animation.
+
+### Skills and Contact
+
+- **Style:** Paired skill/tool columns and numbered work-style statements sit on the pale field; a dark full-width contact block closes the archive.
+- **Accent:** Bright pink marks the opportunity heading and handwritten closing note.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** preserve generous negative space around display type and portrait imagery.
-- **Do** keep burgundy inside the serif emphasis role and pink inside annotation or interaction roles.
-- **Do** retain the work page's sparse image-led behavior as part of the same archive, even though its canvas remains white.
-- **Do** leave résumé facts explicitly pending until verified content is available.
+- **Do** treat each section as a distinct editorial field with one clear composition.
+- **Do** keep fixed tabs compact, indexed, and synchronized with the visible section.
+- **Do** use muted pink for system state and bright pink for expressive emphasis.
+- **Do** preserve keyboard focus behavior and all reduced-motion alternatives.
+- **Do** keep the work index and individual case studies visually autonomous from the résumé archive.
 
 ### Don't:
 
-- **Don't** turn this extension into a replacement identity for individual case studies.
-- **Don't** use handwriting for long copy, labels, or navigation.
-- **Don't** add shadows, gradients, or rounded cards that are absent from the implemented archive.
-- **Don't** fabricate résumé details, credentials, dates, tools, or contact information.
+- **Don't** convert archive sections into a uniform dashboard or card grid.
+- **Don't** apply bright pink to large backgrounds or long body copy.
+- **Don't** add shadows, gradients, or generalized rounded containers.
+- **Don't** remove the poem's vertical Japanese setting or merge it into résumé metadata.
+- **Don't** treat the six-section `/1` composition as a new global portfolio template.

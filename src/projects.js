@@ -1,8 +1,8 @@
 export const projects = [
   {
-    "title": "FORM / 01",
-    "category": "品牌识别 · 概念项目",
-    "description": "为独立家具品牌建立克制而鲜明的视觉语言。从字标、色彩到印刷物，用几何与留白呈现物件的日常之美。"
+    "title": "NOORA / 01",
+    "category": "个人档案 · 求职简历",
+    "description": "关于我、教育背景、原创写作、项目经验与设计能力的个人档案。"
   },
   {
     "title": "AFTER HOURS",
