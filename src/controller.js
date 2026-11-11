@@ -1,8 +1,9 @@
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { home } from "./pages/home.js";
+import { aboutHome, home } from "./pages/home.js";
 import { inner } from "./pages/inner.js";
 import { miste } from "./pages/miste.js";
+import { resume } from "./pages/resume.js";
 import { index as indexPage, IndexFloat } from "./pages/index-page.js";
 import { Carousel } from "./carousel.js";
 import { MAIN_COUNT, SATELLITES_PER_IMAGE, mainIdx, satIdx } from "./gpu.js";
@@ -181,7 +182,9 @@ function animateChromeIn(selector, delay) {
 // ---------------------------------------------------------------------------
 
 const ROUTES = {
-  "/": { page: "main", view: home, image: null },
+  "/": { page: "about", view: aboutHome, image: null },
+  "/work": { page: "main", view: home, image: null },
+  "/resume": { page: "resume", view: resume, image: null },
   "/index": { page: "index", view: indexPage, image: null },
   "/1": { page: "inner", view: inner(0), image: 0 },
   "/2": { page: "inner", view: inner(1), image: 1 },
@@ -337,6 +340,26 @@ export class Controller {
       return;
     }
 
+    if (state.page === "about") {
+      document.body.style.height = "100vh";
+      this.lenis.stop();
+      this.lenis.scrollTo(0, { immediate: true, force: true });
+      return;
+    }
+
+    if (state.page === "resume") {
+      const syncResumeHeight = () => {
+        document.body.style.height = `${sec.scrollHeight}px`;
+        this.lenis.resize();
+      };
+      syncResumeHeight();
+      sec._heightObserver = new ResizeObserver(syncResumeHeight);
+      sec._heightObserver.observe(sec);
+      this.lenis.start();
+      this.lenis.scrollTo(0, { immediate: true, force: true });
+      return;
+    }
+
     if (state.page === "inner") {
       const stack = sec.querySelector(".stack");
       const slots = stack.querySelectorAll(".slot");
@@ -401,6 +424,10 @@ export class Controller {
       const sec = this.app.querySelector('[data-page="miste"]');
       sec?._heightObserver?.disconnect();
     }
+    if (state.page === "resume") {
+      const sec = this.app.querySelector('[data-page="resume"]');
+      sec?._heightObserver?.disconnect();
+    }
     for (const plane of this.gpu.planes) {
       plane.trackedEl = null;
     }
@@ -409,8 +436,10 @@ export class Controller {
   _setActiveNav(pageKey) {
     // Only the main and index pages have a corresponding nav link; inner
     // pages leave the nav with nothing active.
-    const activeKey =
-      pageKey === "main" ? "main" : pageKey === "index" ? "index" : null;
+    const activeKey = ["about", "main", "index", "resume"].includes(pageKey)
+      ? pageKey
+      : null;
+    document.body.dataset.currentPage = pageKey;
     const links = document.querySelectorAll("#nav a[data-nav-key]");
     for (const a of links) {
       if (activeKey && a.getAttribute("data-nav-key") === activeKey) {
@@ -425,7 +454,7 @@ export class Controller {
     if (state.page === "main") this.gpu.applyMainLayout();
     else if (state.page === "index") this.gpu.applyIndexLayout();
     else if (state.page === "inner") this.gpu.applyInnerLayout(state.image);
-    else if (state.page === "miste") {
+    else if (["about", "resume", "miste"].includes(state.page)) {
       for (const plane of this.gpu.planes) plane.opacity = 0;
     }
   }
@@ -444,7 +473,10 @@ export class Controller {
   }
 
   _resolveTransition(from, to) {
-    return this.transitions[`${from}->${to}`];
+    return this.transitions[`${from}->${to}`] ?? {
+      out: (fromEl) => gsap.to(fromEl, { opacity: 0, duration: 0.35, ease: "power2.inOut" }),
+      in: (_fromEl, toEl) => gsap.fromTo(toEl, { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power2.out" }),
+    };
   }
 
   async navigate(path, target = null) {

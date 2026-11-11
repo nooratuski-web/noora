@@ -46,8 +46,8 @@ async function start() {
 }
 
 const dialog = document.getElementById("about-dialog");
-document.getElementById("about-link").addEventListener("click", e => { e.preventDefault(); dialog.showModal(); });
-document.getElementById("close-about").addEventListener("click", () => dialog.close());
+document.getElementById("about-link")?.addEventListener("click", e => { e.preventDefault(); dialog.showModal(); });
+document.getElementById("close-about")?.addEventListener("click", () => dialog.close());
 start().catch(error => {
   console.error(error);
   document.getElementById("preloader").remove();
