@@ -64,7 +64,10 @@ export function resume() {
           <p class="bard-note">Designer by day,<br>Bard after midnight.</p>
           <ul class="interest-index" aria-label="兴趣爱好"><li>GAME WORLDS</li><li>NOVELS</li><li>DOCUMENTARIES</li><li>HANDCRAFT</li><li>MIDNIGHT POETRY</li></ul>
         </div>
-        <div class="cat-track" aria-hidden="true"><img src="${asset("cat-strip.png")}" alt=""></div>
+        <div class="cat-track" aria-hidden="true">
+          <span class="cat-butterfly"><svg viewBox="0 0 48 40"><path d="M23 20C16 4 4 3 5 13c1 7 8 10 18 9M25 20C32 4 44 3 43 13c-1 7-8 10-18 9M23 20c-8 1-13 8-9 12 4 3 8-2 10-9M25 20c8 1 13 8 9 12-4 3-8-2-10-9M24 17v12"/></svg></span>
+          <div class="cat-walker"><img src="${asset("cat-cutout.png")}" alt=""></div>
+        </div>
       </article>
 
       <article id="midnight-note" class="archive-section archive-poem" data-archive-section="off-duty">

@@ -4,11 +4,12 @@
   "title": "Design System: Noora Portfolio Archive",
   "extensions": {
     "colorMeta": {
-      "archive-light": { "role": "neutral", "displayName": "Archive Light", "canonical": "#f4f5f5" },
-      "archive-pale": { "role": "neutral", "displayName": "Archive Pale", "canonical": "#c8cdce" },
+      "archive-light": { "role": "neutral", "displayName": "Champagne", "canonical": "#f5e6d1" },
+      "archive-pale": { "role": "neutral", "displayName": "Pale Slate", "canonical": "#d5c5c8" },
+      "archive-silver": { "role": "neutral", "displayName": "Silver Chalice", "canonical": "#b5aca3" },
       "archive-steel": { "role": "neutral", "displayName": "Archive Steel", "canonical": "#9da3a4" },
-      "archive-ink": { "role": "primary", "displayName": "Archive Ink", "canonical": "#3f373a" },
-      "archive-pink": { "role": "primary", "displayName": "Archive Pink", "canonical": "#b84f69" },
+      "archive-ink": { "role": "primary", "displayName": "Royal Brown", "canonical": "#533a33" },
+      "archive-pink": { "role": "primary", "displayName": "Puce Red", "canonical": "#c96d8a" },
       "archive-bright-pink": { "role": "secondary", "displayName": "Bright Annotation Pink", "canonical": "#db7f8e" },
       "archive-night": { "role": "secondary", "displayName": "Archive Night", "canonical": "#604d53" }
     },

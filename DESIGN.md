@@ -2,11 +2,12 @@
 name: Noora Portfolio Archive
 description: A steel-gray and pink editorial personal archive within a broader image-led design portfolio.
 colors:
-  archive-light: "#f4f5f5"
-  archive-pale: "#c8cdce"
+  archive-light: "#f5e6d1"
+  archive-pale: "#d5c5c8"
+  archive-silver: "#b5aca3"
   archive-steel: "#9da3a4"
-  archive-ink: "#3f373a"
-  archive-pink: "#b84f69"
+  archive-ink: "#533a33"
+  archive-pink: "#c96d8a"
   archive-bright-pink: "#db7f8e"
   archive-night: "#604d53"
 typography:
