@@ -33,6 +33,7 @@ export function resume() {
 
       <article id="profile" class="archive-section archive-profile" data-archive-section="profile">
         <div class="profile-copy archive-reveal">
+          <span class="archive-sticker sticker-heart" aria-hidden="true">♥</span>
           <h1>Hi, I’m<br><em>Noora.</em></h1>
           <p>我是一名平面设计专业学生，关注品牌视觉、角色 IP、编辑设计与数字体验。</p>
           <p>目前希望寻找创意视觉、品牌设计、IP 设计与 AIGC 相关的工作机会。</p>
@@ -57,6 +58,7 @@ export function resume() {
           </svg>
         </div>
         <div class="off-duty-copy archive-reveal">
+          <span class="archive-sticker sticker-bard" aria-hidden="true">BARD MODE · ON</span>
           <h2 class="scramble-title" data-text="OFF DUTY">OFF DUTY</h2>
           <p>不做设计的时候，我通常在游戏世界里冒险，躲进小说和纪录片里观察别人的人生，或者低头做一些需要耐心的手工。</p>
           <p>夜深人静时，我偶尔会写诗，并郑重地自称“游吟诗人巴德”——虽然目前还没有酒馆愿意雇我。</p>
@@ -71,6 +73,7 @@ export function resume() {
       </article>
 
       <article id="midnight-note" class="archive-section archive-poem" data-archive-section="off-duty">
+        <span class="poem-motif" aria-hidden="true">✦　☾　✦</span>
         <div class="poem-cn archive-reveal">
           <h2>你还记得海的味道吗。</h2>
           <div class="poem-lines"><p>风中弥漫着海的咸湿。</p><p>走进夜色与星沙，<br>捕捞遗落的蓝眼泪。</p><p>海浪一遍遍翻滚。</p><p>原来最先被打湿的，<br><em>是回忆。</em></p></div>
@@ -152,6 +155,47 @@ export function mountResume(root) {
     const observer = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { scramble(scrambleTitle); observer.disconnect(); } }, { threshold: 0.7 });
     observer.observe(scrambleTitle);
     cleanups.push(() => observer.disconnect());
+  }
+
+  const offDuty = root.querySelector(".archive-off-duty");
+  const catTrack = root.querySelector(".cat-track");
+  const catWalker = root.querySelector(".cat-walker");
+  const butterfly = root.querySelector(".cat-butterfly");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (offDuty && catTrack && catWalker && butterfly && finePointer && !reduceMotion) {
+    let targetCat = window.innerWidth * .72;
+    let currentCat = targetCat;
+    let targetButterfly = targetCat + 110;
+    let currentButterfly = targetButterfly;
+    let butterflyY = 0;
+    let currentY = 0;
+    let direction = -1;
+    let frameId = 0;
+
+    const move = (event) => {
+      const rect = catTrack.getBoundingClientRect();
+      const pointerX = Math.max(18, Math.min(rect.width - 36, event.clientX - rect.left));
+      const nextDirection = pointerX >= targetButterfly ? 1 : -1;
+      if (Math.abs(pointerX - targetButterfly) > 3) direction = nextDirection;
+      targetButterfly = pointerX;
+      targetCat = Math.max(-24, Math.min(rect.width - catWalker.offsetWidth + 24, pointerX + (direction < 0 ? 42 : -112)));
+      butterflyY = Math.max(-18, Math.min(24, ((event.clientY / window.innerHeight) - .5) * 42));
+      catWalker.style.setProperty("--cat-facing", direction > 0 ? -1 : 1);
+      catTrack.classList.add("is-pointer-following");
+    };
+
+    const render = () => {
+      currentCat += (targetCat - currentCat) * .075;
+      currentButterfly += (targetButterfly - currentButterfly) * .16;
+      currentY += (butterflyY - currentY) * .12;
+      catWalker.style.transform = `translate3d(${currentCat}px,0,0)`;
+      butterfly.style.transform = `translate3d(${currentButterfly}px,${currentY}px,0)`;
+      frameId = requestAnimationFrame(render);
+    };
+
+    offDuty.addEventListener("pointermove", move);
+    frameId = requestAnimationFrame(render);
+    cleanups.push(() => { offDuty.removeEventListener("pointermove", move); cancelAnimationFrame(frameId); });
   }
 
   const book = root.querySelector(".book-toggle");

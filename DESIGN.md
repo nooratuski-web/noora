@@ -1,6 +1,6 @@
 ---
 name: Noora Portfolio Archive
-description: A steel-gray and pink editorial personal archive within a broader image-led design portfolio.
+description: A continuous champagne-paper editorial archive with royal-brown type and restrained puce accents.
 colors:
   archive-light: "#f5e6d1"
   archive-pale: "#d5c5c8"
@@ -61,7 +61,7 @@ components:
 
 **Creative North Star: "The Steel-Gray Personal Archive"**
 
-The `/1` résumé is a six-section personal archive built from cool paper gray, industrial steel, muted plum, and editorial pink. Oversized serif headings, compact indexed labels, documentary imagery, handwritten asides, and object-based interactions let personal interests and professional experience coexist without turning the page into a conventional résumé sheet.
+The `/1` résumé is a six-section personal archive built on one continuous champagne-paper field with royal-brown type and restrained puce accents. Oversized serif headings, compact indexed labels, documentary imagery, handwritten asides, and object-based interactions let personal interests and professional experience coexist without turning the page into a conventional résumé sheet.
 
 This is a distinct extension within the broader portfolio, not a replacement for it. The main work index remains sparse, white, image-led, and spatial; project case studies retain their own visual languages. Archive tokens govern the personal résumé surface and should not be imposed on MISTÉ or other case studies.
 
@@ -69,13 +69,13 @@ This is a distinct extension within the broader portfolio, not a replacement for
 
 - Six full-viewport editorial sections: profile, off duty, midnight poem, education, experience, and skills/contact.
 - Fixed folder-like tabs connect five named archive destinations; the poem remains part of Off Duty.
-- Steel-gray surfaces alternate with a pale profile field, a plum night interlude, and a light experience field.
+- Light sections share one continuous champagne field; the plum poem is an inset literary interlude rather than a full-width color break.
 - Pink is used for emphasis, active state, annotation, and selected details rather than broad surface fills.
 - Motion reveals content and physical archive objects, with a complete reduced-motion fallback.
 
 ## Colors
 
-The archive palette is cool and material: pale paper, steel gray, charcoal-plum ink, and two controlled pink accents.
+The archive palette is warm and material: champagne paper, royal-brown ink, silver structure, and one controlled puce accent.
 
 ### Primary
 
@@ -97,7 +97,7 @@ The archive palette is cool and material: pale paper, steel gray, charcoal-plum 
 
 **The Pink Hierarchy Rule.** Use muted pink for structure and active state; reserve bright pink for expressive emphasis and handwriting.
 
-**The Section Field Rule.** Each major section has one dominant flat field. Use imagery, rules, and typography for hierarchy rather than card stacks.
+**The Continuous Field Rule.** Light sections share one paper field. Use spacing, rules, imagery, and the inset poem for rhythm rather than changing the page background at every boundary.
 
 **The Extension Rule.** Keep these colors on the personal archive. Preserve the wider portfolio's white work index and project-specific palettes.
 
@@ -133,7 +133,7 @@ At 900px and below, tabs become a horizontally scrollable row, section padding b
 
 ## Elevation & Depth
 
-The archive uses no box-shadow vocabulary. Depth comes from alternating flat section fields, photographic contrast, clipped collage edges, thin steel rules, object rotation, and the fixed tabs overlapping the page edge.
+The archive uses no box-shadow vocabulary. Depth comes from the continuous paper field, photographic contrast, clipped collage edges, thin silver rules, object rotation, and the fixed tabs overlapping the page edge.
 
 ### Named Rules
 
@@ -166,8 +166,8 @@ Most content is square-edged and editorial. The fixed archive tabs are the delib
 ### Off-Duty Collage and Cat Track
 
 - **Style:** Wide documentary collage extends into the section gutter; an animated interest loop crosses the image.
-- **Behavior:** The black cat strip translates into place when Off Duty enters view.
-- **Reduced Motion:** The loop is removed and the cat image remains untransformed.
+- **Behavior:** On precise pointers, a hand-drawn butterfly follows the pointer and the black cat trails it with damped motion, flipping to face the travel direction. Touch devices use an automatic reversible path.
+- **Reduced Motion:** Pointer tracking and translation are removed; the cat and butterfly remain static.
 
 ### Artist Book Toggle
 

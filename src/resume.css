@@ -86,10 +86,12 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
   grid-template-columns: minmax(0, 1fr) minmax(340px, 42vw);
   align-items: center;
   gap: clamp(48px, 8vw, 128px);
-  background: var(--archive-steel);
+  background: var(--archive-light);
 }
 
-.profile-copy { max-width: 680px; }
+.profile-copy { position: relative; max-width: 680px; }
+.archive-sticker { display: inline-flex; align-items: center; justify-content: center; border: 1px solid currentColor; color: var(--archive-pink); font-size: 10px; letter-spacing: .1em; }
+.sticker-heart { position: absolute; top: -48px; left: 2px; width: 32px; height: 30px; background: var(--archive-light); font-size: 14px; transform: rotate(-5deg); }
 .profile-copy h1 {
   font-family: "Cormorant Garamond MISTE", Georgia, serif;
   font-size: clamp(4rem, 9vw, 6rem);
@@ -122,12 +124,14 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
   align-items: center;
   gap: clamp(36px, 6vw, 96px);
   padding-bottom: 150px;
-  background: var(--archive-silver);
+  background: var(--archive-light);
 }
 .off-duty-collage { position: relative; margin-left: calc(clamp(24px, 6vw, 96px) * -1); }
 .off-duty-collage > img { display: block; width: min(100%, 900px); height: auto; }
 .interest-loop { position: absolute; left: 3%; right: 0; bottom: -2%; width: 92%; overflow: visible; }
 .interest-loop text { fill: var(--archive-bright-pink); font-size: 22px; font-weight: 600; letter-spacing: .07em; }
+.off-duty-copy { position: relative; }
+.sticker-bard { margin-bottom: 22px; padding: 8px 12px; border-radius: 999px; background: var(--archive-silver); color: var(--archive-ink); transform: rotate(2deg); }
 .off-duty-copy h2 { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(3.5rem, 7vw, 6rem); line-height: .85; letter-spacing: -.035em; }
 .off-duty-copy > p { max-width: 31rem; margin-top: 25px; font-size: 14px; line-height: 1.9; }
 .off-duty-copy .bard-note { color: var(--archive-pink); font-family: "Segoe Print", "Bradley Hand", cursive; font-size: clamp(22px, 2.4vw, 38px); font-weight: 600; line-height: 1.08; transform: rotate(-4deg); }
@@ -138,14 +142,19 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
 .cat-walker img { display: block; width: 100%; height: auto; transform-origin: 50% 100%; }
 .cat-butterfly { position: absolute; left: 0; bottom: 91px; width: 38px; color: var(--archive-pink); transform: translateX(105vw); will-change: transform; }
 .cat-butterfly svg { display: block; width: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.archive-off-duty.is-in-view .cat-walker { animation: cat-walk 12s var(--ease-in-out) 300ms infinite; }
-.archive-off-duty.is-in-view .cat-walker img { animation: cat-bob 520ms var(--ease-in-out) 300ms infinite alternate; }
-.archive-off-duty.is-in-view .cat-butterfly { animation: butterfly-lead 12s var(--ease-in-out) 300ms infinite; }
-.archive-off-duty.is-in-view .cat-butterfly svg { animation: butterfly-flutter 620ms var(--ease-in-out) 300ms infinite alternate; }
+.cat-track.is-pointer-following .cat-walker img { animation: cat-bob 520ms var(--ease-in-out) infinite alternate; }
+.cat-track.is-pointer-following .cat-butterfly svg { animation: butterfly-flutter 620ms var(--ease-in-out) infinite alternate; }
 @keyframes cat-walk { 0%, 8% { transform: translateX(110vw); } 44% { transform: translateX(54vw); } 80%, 100% { transform: translateX(-150px); } }
 @keyframes butterfly-lead { 0%, 8% { transform: translateX(105vw); } 44% { transform: translateX(47vw); } 80%, 100% { transform: translateX(-190px); } }
 @keyframes butterfly-flutter { from { transform: translateY(0) rotate(-8deg); } to { transform: translateY(-12px) rotate(8deg); } }
-@keyframes cat-bob { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-7px) rotate(1.5deg); } }
+@keyframes cat-bob { from { transform: translateY(0) rotate(-1deg) scaleX(var(--cat-facing, 1)); } to { transform: translateY(-7px) rotate(1.5deg) scaleX(var(--cat-facing, 1)); } }
+
+@media (hover: none), (pointer: coarse) {
+  .archive-off-duty.is-in-view .cat-walker { animation: cat-walk 12s var(--ease-in-out) 300ms infinite alternate; }
+  .archive-off-duty.is-in-view .cat-walker img { animation: cat-bob 520ms var(--ease-in-out) 300ms infinite alternate; }
+  .archive-off-duty.is-in-view .cat-butterfly { animation: butterfly-lead 12s var(--ease-in-out) 300ms infinite alternate; }
+  .archive-off-duty.is-in-view .cat-butterfly svg { animation: butterfly-flutter 620ms var(--ease-in-out) 300ms infinite alternate; }
+}
 
 .archive-poem {
   display: grid;
@@ -154,7 +163,11 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
   gap: 10vw;
   background: var(--archive-night);
   color: var(--archive-light);
+  width: calc(100% - clamp(32px, 7vw, 112px));
+  min-height: calc(100svh - clamp(32px, 7vw, 112px));
+  margin: clamp(16px, 3.5vw, 56px) auto;
 }
+.poem-motif { position: absolute; top: 7%; right: 6%; color: var(--archive-pink); font-size: 18px; letter-spacing: .25em; }
 .poem-cn { max-width: 660px; }
 .poem-cn h2 { color: var(--archive-bright-pink); font-family: "Cormorant Garamond MISTE", Georgia, "Noto Serif SC", serif; font-size: clamp(2.5rem, 5vw, 5.5rem); font-weight: 450; line-height: 1.12; letter-spacing: -.03em; }
 .poem-lines { margin-top: 60px; }
@@ -215,7 +228,7 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
 .experience-preview img.is-swapping { animation: preview-in 200ms var(--ease-out); }
 @keyframes preview-in { from { opacity: .35; transform: translateY(3%); } to { opacity: 1; transform: translateY(0); } }
 
-.archive-skills { background: var(--archive-silver); padding-bottom: 0; }
+.archive-skills { background: var(--archive-light); padding-bottom: 0; }
 .skills-columns { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 10vw, 170px); }
 .archive-skills h2 { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(3.5rem, 6vw, 5.5rem); line-height: .85; letter-spacing: -.035em; }
 .archive-skills ul, .archive-skills ol { margin: 50px 0 0; padding: 0; list-style: none; }

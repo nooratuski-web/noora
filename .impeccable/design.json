@@ -21,8 +21,9 @@
     },
     "shadows": [],
     "motion": [
-      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Content reveals, tabs, cat strip, and preview entrance." },
+      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Content reveals, tabs, and preview entrance." },
       { "name": "ease-in-out", "value": "cubic-bezier(0.77, 0, 0.175, 1)", "purpose": "Artist-book image transition." },
+      { "name": "cat-follow", "value": "requestAnimationFrame with 0.075 cat damping and 0.16 butterfly damping", "purpose": "Pointer-following cat and butterfly with direction-aware horizontal flip." },
       { "name": "reveal", "value": "500ms cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Opacity and 5% vertical content reveal." },
       { "name": "reduced-motion", "value": "200ms ease opacity/color only", "purpose": "Removes transforms, text loop, scramble, and preview animation." }
     ],
@@ -60,9 +61,9 @@
     }
   ],
   "narrative": {
-    "northStar": "The Steel-Gray Personal Archive",
-    "overview": "The /1 resume is a six-section personal archive built from cool paper gray, industrial steel, muted plum, and editorial pink. It is a distinct extension within the broader portfolio, not a replacement for the white image-led work index or project-specific case studies.",
-    "keyCharacteristics": ["Six full-viewport editorial sections.", "Fixed folder-like archive tabs.", "Muted pink for structure and bright pink for expression.", "Motion with complete reduced-motion fallbacks."],
+    "northStar": "The Continuous Paper Archive",
+    "overview": "The /1 resume is a six-section personal archive built on one continuous champagne-paper field with royal-brown type, silver structure, and restrained puce accents. The poem is an inset dark literary interlude. It is a distinct extension within the broader portfolio, not a replacement for the white image-led work index or project-specific case studies.",
+    "keyCharacteristics": ["One continuous paper field across light sections.", "Fixed folder-like archive tabs.", "Puce accents and restrained original sticker motifs.", "Pointer-following cat motion with reduced-motion and touch fallbacks."],
     "rules": [
       { "name": "The Pink Hierarchy Rule", "body": "Use muted pink for structure and active state; reserve bright pink for expressive emphasis and handwriting.", "section": "colors" },
       { "name": "The Extension Rule", "body": "Keep these colors on the personal archive and preserve project-specific palettes.", "section": "colors" },
