@@ -81,6 +81,16 @@ html.js .resume-v2 .archive-reveal {
   transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
 }
 html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translateY(0); }
+html.js .resume-v2 .archive-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+}
+html.js .resume-v2 .archive-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+html.js .resume-v2 .archive-stagger > :nth-child(2) { transition-delay: 55ms; }
+html.js .resume-v2 .archive-stagger > :nth-child(3) { transition-delay: 110ms; }
+html.js .resume-v2 .archive-stagger > :nth-child(4) { transition-delay: 165ms; }
+html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
 
 .archive-profile {
   display: grid;
@@ -90,7 +100,7 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
   background: var(--archive-light);
 }
 
-.profile-copy { position: relative; max-width: 680px; }
+.profile-copy { position: relative; max-width: 700px; }
 .archive-sticker { display: inline-flex; align-items: center; justify-content: center; border: 1px solid currentColor; color: var(--archive-pink); font-size: 10px; letter-spacing: .1em; }
 .sticker-heart { position: absolute; top: -48px; left: 2px; width: 32px; height: 30px; background: var(--archive-light); font-size: 14px; transform: rotate(-5deg); }
 .profile-copy h1 {
@@ -101,9 +111,12 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
   letter-spacing: -.04em;
 }
 .profile-copy h1 em { color: var(--archive-bright-pink); font-weight: 500; }
-.profile-copy > p { max-width: 34rem; margin-top: 28px; font-size: clamp(13px, 1.05vw, 16px); line-height: 1.9; }
+.profile-copy > p { max-width: 42rem; margin-top: 28px; font-size: clamp(13px, 1.05vw, 16px); line-height: 1.9; }
 .profile-copy > p + p { margin-top: 8px; }
-.profile-meta { display: flex; gap: 44px; margin-top: 42px; }
+.profile-copy .profile-role { margin-top: 28px; color: var(--archive-pink-readable); font-size: 10px; font-weight: 650; letter-spacing: .14em; }
+.profile-copy .profile-summary { margin-top: 15px; }
+.profile-copy .profile-focus { margin-top: 22px; color: var(--archive-pink-readable); font-size: 9px; font-weight: 650; letter-spacing: .14em; line-height: 1.6; }
+.profile-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 44px; margin-top: 30px; }
 .profile-meta div { display: grid; gap: 7px; }
 .profile-meta dt { font-size: 9px; letter-spacing: .14em; }
 .profile-meta dd { font-size: 12px; }
@@ -222,7 +235,7 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
 .experience-name { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: 24px; line-height: .95; transition: color 200ms ease; }
 .experience-meta { display: grid; gap: 6px; font-size: 11px; line-height: 1.45; }
 .experience-meta b { font-size: 9px; letter-spacing: .1em; }
-.experience-detail { grid-column: 3; font-size: 10px; line-height: 1.6; }
+.experience-detail { grid-column: 3; max-width: 42ch; font-size: 10px; line-height: 1.6; }
 .experience-row.is-active .experience-name { color: var(--archive-pink); }
 .experience-preview { height: min(62vh, 620px); margin: 0; overflow: visible; background: transparent; }
 .experience-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -234,10 +247,17 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
 .archive-skills h2 { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(3.5rem, 6vw, 5.5rem); line-height: .85; letter-spacing: -.035em; }
 .archive-skills ul, .archive-skills ol { margin: 50px 0 0; padding: 0; list-style: none; }
 .archive-skills li { padding: 16px 0; border-top: 1px solid var(--archive-steel); font-size: 14px; }
-.tools-list li { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(24px, 2.6vw, 38px); line-height: 1; }
+.capability-map dl { margin: 50px 0 0; }
+.capability-map dl div { display: grid; grid-template-columns: minmax(170px, .65fr) 1fr; gap: 28px; padding: 18px 0; border-top: 1px solid var(--archive-steel); }
+.capability-map dt { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(20px, 2vw, 30px); line-height: 1; }
+.capability-map dd { font-size: 12px; line-height: 1.7; }
+.tools-list li { display: grid; grid-template-columns: minmax(140px, .7fr) 1fr; gap: 22px; align-items: baseline; }
+.tools-list b { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(24px, 2.6vw, 38px); font-weight: 500; line-height: 1; }
+.tools-list span { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; line-height: 1.6; }
 .work-style { margin-top: 110px; }
 .work-style ol { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; counter-reset: work; }
 .work-style li { counter-increment: work; font-size: 12px; line-height: 1.7; }
+.work-style li b { display: block; margin-bottom: 8px; font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: 22px; font-weight: 600; }
 .work-style li::before { content: "0" counter(work); display: block; margin-bottom: 24px; color: var(--archive-pink-readable); font-size: 10px; letter-spacing: .1em; }
 .archive-contact { display: grid; grid-template-columns: 1.4fr .8fr .8fr; gap: 60px; align-items: end; margin: 110px calc(clamp(24px, 6vw, 96px) * -1) 0; padding: 72px clamp(24px, 6vw, 96px); background: var(--archive-ink); color: var(--archive-light); }
 .archive-contact h2 { font-size: clamp(3rem, 5vw, 5.2rem); }
@@ -278,6 +298,7 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
   .experience-meta, .experience-detail { grid-column: 2; }
   .experience-preview { height: 56vh; margin-top: 45px; }
   .skills-columns { grid-template-columns: 1fr; gap: 90px; }
+  .capability-map dl div, .tools-list li { grid-template-columns: 1fr; gap: 8px; }
   .work-style ol { grid-template-columns: 1fr; gap: 0; }
   .archive-contact { display: block; margin-top: 90px; }
   .archive-contact address, .thanks-note { margin-top: 60px; }
@@ -285,6 +306,7 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
 
 @media (prefers-reduced-motion: reduce) {
   html.js .resume-v2 .archive-reveal { opacity: 1; transform: none; transition: opacity 200ms ease; }
+  html.js .resume-v2 .archive-stagger > * { opacity: 1; transform: none; transition: none; }
   .interest-loop { display: none; }
   .cat-walker, .cat-walker img, .cat-butterfly, .cat-butterfly svg { animation: none !important; transform: none; }
   .cat-walker { left: auto; right: 20px; }

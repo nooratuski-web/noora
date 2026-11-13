@@ -4,10 +4,10 @@ const profileImage = withBase("/images/noora-portrait.jpg");
 const asset = (name) => withBase(`/images/profile/${name}`);
 
 const projects = [
-  { name: "MORO", slug: "moro", type: "PERSONAL PROJECT", field: "原创角色 IP / AIGC 辅助探索", image: asset("project-moro.png") },
-  { name: "NIGHT READING", slug: "night-reading", type: "PERSONAL PROJECT", field: "阅读产品 / UI・UX / 传播视觉", image: asset("project-night-reading.png") },
-  { name: "MISTÉ", slug: "miste", type: "PERSONAL PROJECT", field: "概念香氛品牌 / 品牌识别 / 包装", image: asset("project-miste.png") },
-  { name: "KAAT", slug: "kaat", type: "TEAM PROJECT", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "参与水镜摄影测试、材质探索、视觉方向筛选与传单设计。", image: asset("project-kaat.png") },
+  { name: "MORO", slug: "moro", type: "PERSONAL PROJECT", field: "原创角色 IP / AIGC 辅助探索", detail: "独立完成角色定位、AIGC 造型探索、人工修正、视觉系统与商业应用设计。", image: asset("project-moro.png") },
+  { name: "NIGHT READING", slug: "night-reading", type: "PERSONAL PROJECT", field: "阅读产品 / UI・UX / 传播视觉", detail: "独立完成体验策略、界面视觉、情绪标签、个性化书单与社交传播设计。", image: asset("project-night-reading.png") },
+  { name: "MISTÉ", slug: "miste", type: "PERSONAL PROJECT", field: "概念香氛品牌 / 品牌识别 / 包装", detail: "独立完成品牌概念、产品命名、视觉识别、包装系统与 Campaign 延展。", image: asset("project-miste.png") },
+  { name: "KAAT", slug: "kaat", type: "TEAM PROJECT · 校内实践", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "参与水镜摄影测试、材质探索、视觉方向筛选与传单设计。", image: asset("project-kaat.png") },
 ];
 
 function projectRows() {
@@ -35,11 +35,14 @@ export function resume() {
         <div class="profile-copy archive-reveal">
           <span class="archive-sticker sticker-heart" aria-hidden="true">♥</span>
           <h1>Hi, I’m<br><em>Noora.</em></h1>
-          <p>我是一名平面设计专业学生，关注品牌视觉、角色 IP、编辑设计与数字体验。</p>
-          <p>目前希望寻找创意视觉、品牌设计、IP 设计与 AIGC 相关的工作机会。</p>
+          <p class="profile-role">郑怀楠 · CREATIVE VISUAL DESIGNER</p>
+          <p class="profile-summary">京都精华大学媒体表现与平面设计方向本科在读。专注品牌视觉、原创 IP、编辑设计与数字传播，能够把内容与概念推进为清晰、完整的视觉成果。</p>
+          <p class="profile-focus">BRAND VISUAL · ORIGINAL IP · EDITORIAL · AIGC</p>
           <dl class="profile-meta">
             <div><dt>BASED IN</dt><dd>Kyoto, Japan</dd></div>
-            <div><dt>STATUS</dt><dd>Open to opportunities</dd></div>
+            <div><dt>GRADUATION</dt><dd>2027.03</dd></div>
+            <div><dt>SEEKING</dt><dd>Brand / IP / Creative Visual</dd></div>
+            <div><dt>AVAILABILITY</dt><dd>2027.04 · 可回国全职</dd></div>
           </dl>
         </div>
         <figure class="profile-portrait archive-reveal">
@@ -98,19 +101,28 @@ export function resume() {
       </article>
 
       <article id="experience" class="archive-section archive-experience" data-archive-section="experience">
-        <div class="experience-heading archive-reveal"><h2>SELECTED<br>PROJECT<br><em>EXPERIENCE</em></h2><p>从概念构思到视觉落地，持续练习建立完整的设计叙事。</p></div>
+        <div class="experience-heading archive-reveal"><h2>SELECTED<br>PROJECT<br><em>EXPERIENCE</em></h2><p>三个个人项目与一项校内团队实践，覆盖品牌、IP、数字体验与传播视觉。点击项目可查看完整过程与成果。</p></div>
         <div class="experience-list archive-reveal">${projectRows()}</div>
         <figure class="experience-preview archive-reveal"><img src="${projects[0].image}" alt="MORO 项目代表图"></figure>
       </article>
 
       <article id="skills" class="archive-section archive-skills" data-archive-section="skills">
         <div class="skills-columns">
-          <section class="archive-reveal"><h2>WHAT I DO</h2><ul><li>品牌视觉与 Campaign 设计</li><li>原创 IP 与系列化延展</li><li>编辑设计与信息排版</li><li>数字产品与传播视觉</li><li>AIGC 探索与人工精修</li></ul></section>
-          <section class="archive-reveal"><h2>TOOLS</h2><ul class="tools-list"><li>Adobe Illustrator</li><li>Adobe Photoshop</li><li>Adobe InDesign</li><li>Figma</li><li>AIGC Tools</li></ul></section>
+          <section class="archive-reveal capability-map">
+            <h2 class="scramble-title" data-text="WHAT I CAN DELIVER">WHAT I CAN DELIVER</h2>
+            <dl class="archive-stagger">
+              <div><dt>品牌视觉与 Campaign</dt><dd>品牌概念、视觉方向、主视觉、海报、社交媒体与系列传播延展。</dd></div>
+              <div><dt>原创 IP 与角色系统</dt><dd>角色定位、形象设定、表情与动作探索、周边及商业场景应用。</dd></div>
+              <div><dt>编辑与纸媒体设计</dt><dd>信息梳理、网格与版式、书籍编辑、纸张实验及印刷文件整理。</dd></div>
+              <div><dt>数字体验与传播视觉</dt><dd>体验路径、界面视觉、交互原型、活动页面与社交传播素材。</dd></div>
+              <div><dt>AIGC 辅助创作</dt><dd>概念发散、角色与场景探索、素材筛选、图像合成及人工精修。</dd></div>
+            </dl>
+          </section>
+          <section class="archive-reveal"><h2>TOOLS &amp; USE</h2><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>矢量绘图、标志与品牌视觉系统</span></li><li><b>Photoshop</b><span>图像处理、合成、修图与 AIGC 结果精修</span></li><li><b>InDesign</b><span>书籍编辑、版式系统与多页文件管理</span></li><li><b>Figma</b><span>界面设计、交互原型与传播物料排版</span></li><li><b>AIGC Tools</b><span>概念发散、角色与场景探索、图像素材辅助生成</span></li></ul></section>
         </div>
-        <section class="work-style archive-reveal"><h2>HOW I WORK</h2><ol><li>从内容与目标出发提炼创意</li><li>整合文字、图像与视觉叙事</li><li>重视版式细节与跨媒介一致性</li><li>主动沟通并保持清晰的协作反馈</li><li>使用 AIGC 提高探索与制作效率</li></ol></section>
+        <section class="work-style archive-reveal"><h2>HOW I WORK</h2><ol class="archive-stagger"><li><b>理解问题</b>梳理内容、受众、目标与输出场景</li><li><b>建立方向</b>完成资料研究、概念提炼与视觉探索</li><li><b>形成系统</b>统一字体、色彩、版式与跨媒介规则</li><li><b>细化落地</b>制作应用物料并进行人工检查与精修</li><li><b>协作交付</b>清晰沟通反馈，整理源文件与输出规范</li></ol></section>
         <footer class="archive-contact archive-reveal">
-          <div><h2>OPEN TO<br><em>OPPORTUNITIES</em></h2><p>创意视觉 / 品牌设计 / IP设计 / AIGC</p></div>
+          <div><h2>OPEN TO<br><em>OPPORTUNITIES</em></h2><p>创意视觉 / 品牌设计 / IP 设计 / 编辑设计 / AIGC 视觉</p></div>
           <address><span>Kyoto, Japan</span><a href="mailto:nooratuski@gmail.com">nooratuski@gmail.com</a><span>可配合回国工作安排</span></address>
           <p class="thanks-note">Thanks for scrolling.<br>Let’s make something worth remembering.</p>
         </footer>
@@ -136,7 +148,7 @@ export function mountResume(root) {
   const cleanups = [];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.16 });
-  root.querySelectorAll(".archive-reveal").forEach((element) => revealObserver.observe(element));
+  root.querySelectorAll(".archive-reveal, .archive-stagger").forEach((element) => revealObserver.observe(element));
   cleanups.push(() => revealObserver.disconnect());
 
   const tabs = Array.from(root.querySelectorAll(".archive-tabs a"));
@@ -150,11 +162,14 @@ export function mountResume(root) {
   root.querySelectorAll("[data-archive-section]").forEach((section) => sectionObserver.observe(section));
   cleanups.push(() => sectionObserver.disconnect());
 
-  const scrambleTitle = root.querySelector(".scramble-title");
-  if (scrambleTitle && !reduceMotion) {
-    const observer = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { scramble(scrambleTitle); observer.disconnect(); } }, { threshold: 0.7 });
-    observer.observe(scrambleTitle);
-    cleanups.push(() => observer.disconnect());
+  if (!reduceMotion) {
+    root.querySelectorAll(".scramble-title").forEach((title) => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) { scramble(title); observer.disconnect(); }
+      }, { threshold: 0.7 });
+      observer.observe(title);
+      cleanups.push(() => observer.disconnect());
+    });
   }
 
   const offDuty = root.querySelector(".archive-off-duty");
