@@ -5,6 +5,7 @@
   padding: 96px clamp(18px, 4vw, 64px) 72px;
   background: var(--viewer-bg);
   color: var(--viewer-ink);
+  pointer-events: auto;
 }
 
 .pdf-project-header {
