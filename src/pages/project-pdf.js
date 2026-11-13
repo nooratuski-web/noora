@@ -60,7 +60,6 @@ export function projectPdf(slug) {
         </div>
         <span class="pdf-project-count">${project.pages} PAGES</span>
       </header>
-      ${fullSite}
       <main class="pdf-project-pages" aria-label="${project.title} 作品集">
         ${Array.from({ length: project.pages }, (_, index) => `
           <figure class="pdf-project-sheet">
@@ -68,6 +67,7 @@ export function projectPdf(slug) {
             <figcaption>${String(index + 1).padStart(2, "0")} / ${String(project.pages).padStart(2, "0")}</figcaption>
           </figure>`).join("")}
       </main>
+      ${fullSite}
       <nav class="pdf-project-nav" aria-label="其他项目">
         <a href="${route(project.previous)}" data-link><span>PREVIOUS</span>${projects[project.previous].title}</a>
         <a href="${route(project.next)}" data-link><span>NEXT</span>${projects[project.next].title}</a>
