@@ -35,7 +35,7 @@ export function resume() {
         <div class="profile-copy archive-reveal">
           <span class="archive-sticker sticker-heart" aria-hidden="true">♥</span>
           <h1>Hi, I’m<br><em>Noora.</em></h1>
-          <p class="profile-role">郑怀楠 · CREATIVE VISUAL DESIGNER</p>
+          <p class="profile-role">郑怀楠 · VISUAL DESIGN STUDENT</p>
           <p class="profile-summary">京都精华大学媒体表现与平面设计方向本科在读。专注品牌视觉、原创 IP、编辑设计与数字传播，能够把内容与概念推进为清晰、完整的视觉成果。</p>
           <p class="profile-focus">BRAND VISUAL · ORIGINAL IP · EDITORIAL · AIGC</p>
           <dl class="profile-meta">
@@ -113,7 +113,7 @@ export function resume() {
             <dl class="archive-stagger">
               <div><dt>概念与视觉叙事</dt><dd>从情绪、文字和使用场景中提炼概念，并转化为品牌故事、角色设定与数字体验。</dd></div>
               <div><dt>系统化与跨媒介延展</dt><dd>能够把核心方向发展为视觉识别、界面、包装、编辑版式、Campaign 与实体应用。</dd></div>
-              <div><dt>AIGC 探索与人工精修</dt><dd>使用 AIGC 辅助造型和场景探索，通过人工筛选、结构修正、图像合成与统一规范保障质量。</dd></div>
+              <div><dt>AIGC 探索与人工精修</dt><dd>使用 AIGC 辅助造型和场景探索，再进行人工筛选、结构修正、图像合成与视觉统一。</dd></div>
             </dl>
           </section>
           <section class="archive-reveal"><h2>TOOLS &amp; USE</h2><p class="tools-level">熟练使用以下工具完成从视觉探索到成品输出的工作。</p><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>矢量绘图、标志与品牌视觉系统</span></li><li><b>Photoshop</b><span>图像处理、合成、修图与 AIGC 结果精修</span></li><li><b>InDesign</b><span>书籍编辑、版式系统与多页文件管理</span></li><li><b>Figma</b><span>界面设计、交互原型与传播物料排版</span></li><li><b>AIGC Tools</b><span>概念发散、角色与场景探索、图像素材辅助生成</span></li></ul></section>
