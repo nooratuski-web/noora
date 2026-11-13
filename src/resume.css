@@ -236,6 +236,7 @@ html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
 .experience-meta { display: grid; gap: 6px; font-size: 11px; line-height: 1.45; }
 .experience-meta b { font-size: 9px; letter-spacing: .1em; }
 .experience-detail { grid-column: 3; max-width: 42ch; font-size: 10px; line-height: 1.6; }
+.experience-output { grid-column: 3; color: var(--archive-pink-readable); font-size: 9px; line-height: 1.55; letter-spacing: .02em; }
 .experience-row.is-active .experience-name { color: var(--archive-pink); }
 .experience-preview { height: min(62vh, 620px); margin: 0; overflow: visible; background: transparent; }
 .experience-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -296,7 +297,7 @@ html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
   .book-toggle { height: 450px; }
   .experience-list { margin-top: 60px; }
   .experience-row { grid-template-columns: 30px 1fr; }
-  .experience-meta, .experience-detail { grid-column: 2; }
+  .experience-meta, .experience-detail, .experience-output { grid-column: 2; }
   .experience-preview { height: 56vh; margin-top: 45px; }
   .skills-columns { grid-template-columns: 1fr; gap: 90px; }
   .capability-map dl div, .tools-list li { grid-template-columns: 1fr; gap: 8px; }

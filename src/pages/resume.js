@@ -4,10 +4,10 @@ const profileImage = withBase("/images/noora-portrait.jpg");
 const asset = (name) => withBase(`/images/profile/${name}`);
 
 const projects = [
-  { name: "MORO", slug: "moro", type: "PERSONAL PROJECT", field: "原创角色 IP / AIGC 辅助探索", detail: "独立完成角色定位、AIGC 造型探索、人工修正、视觉系统与商业应用设计。", image: asset("project-moro.png") },
-  { name: "NIGHT READING", slug: "night-reading", type: "PERSONAL PROJECT", field: "阅读产品 / UI・UX / 传播视觉", detail: "独立完成体验策略、界面视觉、情绪标签、个性化书单与社交传播设计。", image: asset("project-night-reading.png") },
-  { name: "MISTÉ", slug: "miste", type: "PERSONAL PROJECT", field: "概念香氛品牌 / 品牌识别 / 包装", detail: "独立完成品牌概念、产品命名、视觉识别、包装系统与 Campaign 延展。", image: asset("project-miste.png") },
-  { name: "KAAT", slug: "kaat", type: "TEAM PROJECT · 校内实践", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "参与水镜摄影测试、材质探索、视觉方向筛选与传单设计。", image: asset("project-kaat.png") },
+  { name: "MORO", slug: "moro", type: "个人项目｜2026", field: "原创角色 IP / AIGC 辅助探索", detail: "负责概念定位、AIGC 造型探索、人工修正、角色视觉系统与传播延展。", output: "交付：角色规范、表情动作、周边与 Campaign 视觉", image: asset("project-moro.png") },
+  { name: "NIGHT READING", slug: "night-reading", type: "个人项目｜2026", field: "阅读产品 / UI・UX / 传播视觉", detail: "负责体验路径、情绪标签、UI 视觉、交互原型与分享传播。", output: "交付：交互原型、视觉系统、结果页与传播物料", image: asset("project-night-reading.png") },
+  { name: "MISTÉ", slug: "miste", type: "个人项目｜2026", field: "概念香氛品牌 / 品牌识别 / 包装", detail: "负责品牌概念、命名、视觉识别、包装系统与 Campaign 延展。", output: "交付：品牌识别、香型系列、包装与社交 Campaign", image: asset("project-miste.png") },
+  { name: "KAAT", slug: "kaat", type: "校内团队实践｜2025—2026", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "负责水镜摄影测试、实验素材整理筛选、传单版式参与与最终视觉复核。", output: "团队交付：主视觉、Flyer / Poster 与印刷宣传物", image: asset("project-kaat.png") },
 ];
 
 function projectRows() {
@@ -17,6 +17,7 @@ function projectRows() {
       <span class="experience-name">${project.name}</span>
       <span class="experience-meta"><b>${project.type}</b>${project.field}</span>
       ${project.detail ? `<span class="experience-detail">${project.detail}</span>` : ""}
+      ${project.output ? `<span class="experience-output">${project.output}</span>` : ""}
     </a>`).join("");
 }
 
@@ -25,9 +26,9 @@ export function resume() {
     <section data-page="resume" class="page page-resume resume-v2">
       <nav class="archive-tabs" aria-label="个人档案章节">
         <a href="#profile" data-section="profile" class="is-active">PROFILE</a>
-        <a href="#off-duty" data-section="off-duty">OFF DUTY</a>
         <a href="#education" data-section="education">EDUCATION</a>
         <a href="#experience" data-section="experience">EXPERIENCE</a>
+        <a href="#off-duty" data-section="off-duty">OFF DUTY</a>
         <a href="#skills" data-section="skills">SKILLS</a>
       </nav>
 
@@ -35,9 +36,9 @@ export function resume() {
         <div class="profile-copy archive-reveal">
           <span class="archive-sticker sticker-heart" aria-hidden="true">♥</span>
           <h1>Hi, I’m<br><em>Noora.</em></h1>
-          <p class="profile-role">郑怀楠 · VISUAL DESIGN STUDENT</p>
+          <p class="profile-role">郑怀楠 · 创意视觉设计 / 2027届</p>
           <p class="profile-summary">京都精华大学媒体表现与平面设计方向本科在读。专注品牌视觉、原创 IP、编辑设计与数字传播，能够把内容与概念推进为清晰、完整的视觉成果。</p>
-          <p class="profile-focus">BRAND VISUAL · ORIGINAL IP · EDITORIAL · AIGC</p>
+          <p class="profile-focus">品牌视觉 · IP设计 · AIGC创意</p>
           <dl class="profile-meta">
             <div><dt>BASED IN</dt><dd>Kyoto, Japan</dd></div>
             <div><dt>GRADUATION</dt><dd>2027.03</dd></div>
@@ -50,6 +51,27 @@ export function resume() {
           <figcaption>A little curious,<br>always creating.</figcaption>
           <svg viewBox="0 0 120 92" aria-hidden="true"><path d="M8 12c35 2 66 20 84 49"/><path d="m78 58 17 5-4-18"/></svg>
         </figure>
+      </article>
+
+      <article id="education" class="archive-section archive-education" data-archive-section="education">
+        <div class="education-year archive-reveal" aria-label="2023年至2027年">2023<span>—</span>27</div>
+        <div class="education-copy archive-reveal">
+          <h2>EDUCATION</h2><h3>京都精華大学</h3><p>メディア表現学部<br>媒体表现与平面设计方向</p><p>2023.09 — 2027.03<br>2027年3月卒業予定</p>
+          <div class="seminar-block"><h3>米山菜津子研究室</h3><p>紙メディアを中心に、文字・画像・実体媒体の表現を研究。</p></div>
+          <ul class="study-index"><li>BRAND VISUAL</li><li>EDITORIAL DESIGN</li><li>VISUAL NARRATIVE</li><li>ORIGINAL IP</li><li>AIGC EXPLORATION</li></ul>
+        </div>
+        <div class="book-study archive-reveal">
+          <button class="book-toggle" type="button" aria-pressed="false" aria-label="打开原创艺术书籍《人间草木》">
+            <img class="book-closed" src="${asset("book-closed-cutout.png")}" alt="合上的原创艺术书籍《人间草木》"><img class="book-open" src="${asset("book-open-cutout.png")}" alt="打开的原创艺术书籍《人间草木》"><span>OPEN THE ARCHIVE</span>
+          </button>
+          <div class="book-caption"><h3>《人间草木》</h3><p>REN JIAN CAO MU · ORIGINAL ARTIST BOOK</p><p>从概念、文字、纸张处理到装订制作，全部由本人独立完成。</p></div>
+        </div>
+      </article>
+
+      <article id="experience" class="archive-section archive-experience" data-archive-section="experience">
+        <div class="experience-heading archive-reveal"><h2>SELECTED<br>PROJECT<br><em>EXPERIENCE</em></h2><p>三个个人项目与一项校内团队实践，覆盖品牌、IP、数字体验与传播视觉。点击项目可查看完整过程与成果。</p></div>
+        <div class="experience-list archive-reveal">${projectRows()}</div>
+        <figure class="experience-preview archive-reveal"><img src="${projects[0].image}" alt="MORO 项目代表图"></figure>
       </article>
 
       <article id="off-duty" class="archive-section archive-off-duty" data-archive-section="off-duty">
@@ -85,38 +107,17 @@ export function resume() {
         <div class="poem-jp archive-reveal" lang="ja"><p>あなたは、まだ海の匂いを覚えていますか。</p><p>風は、潮の匂いと湿った空気を運んでくる。</p><p>夜の海へと足を踏み入れ、星砂のあいだに零れ落ちた青い涙を掬い上げる。</p><p>波は、何度も何度も寄せては返す。</p><p>気づけば、最初に濡れていたのは、海ではなく、私の記憶だった。</p></div>
       </article>
 
-      <article id="education" class="archive-section archive-education" data-archive-section="education">
-        <div class="education-year archive-reveal" aria-label="2023年至2027年">2023<span>—</span>27</div>
-        <div class="education-copy archive-reveal">
-          <h2>EDUCATION</h2><h3>京都精華大学</h3><p>メディア表現学部<br>媒体表现与平面设计方向</p><p>2023.09 — 2027.03<br>2027年3月卒業予定</p>
-          <div class="seminar-block"><h3>米山菜津子研究室</h3><p>紙メディアを中心に、文字・画像・実体媒体の表現を研究。</p></div>
-          <ul class="study-index"><li>BRAND VISUAL</li><li>EDITORIAL DESIGN</li><li>VISUAL NARRATIVE</li><li>ORIGINAL IP</li><li>AIGC EXPLORATION</li></ul>
-        </div>
-        <div class="book-study archive-reveal">
-          <button class="book-toggle" type="button" aria-pressed="false" aria-label="打开原创艺术书籍《人间草木》">
-            <img class="book-closed" src="${asset("book-closed-cutout.png")}" alt="合上的原创艺术书籍《人间草木》"><img class="book-open" src="${asset("book-open-cutout.png")}" alt="打开的原创艺术书籍《人间草木》"><span>OPEN THE ARCHIVE</span>
-          </button>
-          <div class="book-caption"><h3>《人间草木》</h3><p>REN JIAN CAO MU · ORIGINAL ARTIST BOOK</p><p>从概念、文字、纸张处理到装订制作，全部由本人独立完成。</p></div>
-        </div>
-      </article>
-
-      <article id="experience" class="archive-section archive-experience" data-archive-section="experience">
-        <div class="experience-heading archive-reveal"><h2>SELECTED<br>PROJECT<br><em>EXPERIENCE</em></h2><p>三个个人项目与一项校内团队实践，覆盖品牌、IP、数字体验与传播视觉。点击项目可查看完整过程与成果。</p></div>
-        <div class="experience-list archive-reveal">${projectRows()}</div>
-        <figure class="experience-preview archive-reveal"><img src="${projects[0].image}" alt="MORO 项目代表图"></figure>
-      </article>
-
       <article id="skills" class="archive-section archive-skills" data-archive-section="skills">
         <div class="skills-columns">
           <section class="archive-reveal capability-map">
-            <h2 class="scramble-title" data-text="CORE STRENGTHS">CORE STRENGTHS</h2>
+            <h2>CORE STRENGTHS</h2>
             <dl class="archive-stagger">
               <div><dt>概念与视觉叙事</dt><dd>从情绪、文字和使用场景中提炼概念，并转化为品牌故事、角色设定与数字体验。</dd></div>
               <div><dt>系统化与跨媒介延展</dt><dd>能够把核心方向发展为视觉识别、界面、包装、编辑版式、Campaign 与实体应用。</dd></div>
               <div><dt>AIGC 探索与人工精修</dt><dd>使用 AIGC 辅助造型和场景探索，再进行人工筛选、结构修正、图像合成与视觉统一。</dd></div>
             </dl>
           </section>
-          <section class="archive-reveal"><h2>TOOLS &amp; USE</h2><p class="tools-level">熟练使用以下工具完成从视觉探索到成品输出的工作。</p><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>矢量绘图、标志与品牌视觉系统</span></li><li><b>Photoshop</b><span>图像处理、合成、修图与 AIGC 结果精修</span></li><li><b>InDesign</b><span>书籍编辑、版式系统与多页文件管理</span></li><li><b>Figma</b><span>界面设计、交互原型与传播物料排版</span></li><li><b>AIGC Tools</b><span>概念发散、角色与场景探索、图像素材辅助生成</span></li></ul></section>
+          <section class="archive-reveal"><h2>TOOLS IN PRACTICE</h2><p class="tools-level">熟练使用以下工具完成从视觉探索到成品输出的工作。</p><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>MISTÉ 品牌视觉、标志与包装图形</span></li><li><b>Photoshop</b><span>MORO 图像合成、人工修正与视觉统一</span></li><li><b>Figma</b><span>Night Reading 界面设计与交互原型</span></li><li><b>InDesign</b><span>编辑出版、版式系统与作品集管理</span></li><li><b>AIGC Tools</b><span>MORO 角色造型与 MISTÉ 场景素材探索</span></li></ul></section>
         </div>
         <section class="work-style archive-reveal"><h2>HOW I WORK</h2><ol class="archive-stagger"><li><b>理解问题</b>梳理内容、受众、目标与输出场景</li><li><b>建立方向</b>完成资料研究、概念提炼与视觉探索</li><li><b>形成系统</b>统一字体、色彩、版式与跨媒介规则</li><li><b>细化落地</b>制作应用物料并进行人工检查与精修</li><li><b>协作交付</b>清晰沟通反馈，整理源文件与输出规范</li></ol></section>
         <footer class="archive-contact archive-reveal">
@@ -132,7 +133,7 @@ function scramble(element) {
   const target = element.dataset.text || element.textContent;
   const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ/·";
   const start = performance.now();
-  const duration = 500;
+  const duration = 380;
   function frame(now) {
     const progress = Math.min((now - start) / duration, 1);
     const fixed = Math.floor(progress * target.length);
