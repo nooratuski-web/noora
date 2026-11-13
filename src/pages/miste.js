@@ -217,9 +217,9 @@ const socialApplication = () => `
 export function miste() {
   return `
     <section data-page="miste" class="page page-miste">
-      <h1 class="page-title">MISTÉ / 03</h1>
+      <h1 class="page-title">MISTÉ / 02</h1>
       <header class="miste-intro">
-        <p class="miste-index">03 / BRAND &amp; PACKAGING</p>
+        <p class="miste-index">02 / BRAND &amp; PACKAGING</p>
         <div class="miste-heading">
           <p class="miste-kicker">MEMORY FRAGRANCE</p>
           <h2 class="miste-wordmark">MISTÉ</h2>

@@ -227,6 +227,7 @@ export class Controller {
     this.mutating = false;
     this.carousel = null;
     this.indexFloat = null;
+    this.scrollPositions = new Map();
 
     this.onClick = this.onClick.bind(this);
     this.onPopState = this.onPopState.bind(this);
@@ -328,14 +329,20 @@ export class Controller {
     plane.bounds.h = rect.height;
   }
 
-  _enterPage(state) {
+  _restoreScroll(state, restore) {
+    const top = restore ? (this.scrollPositions.get(state.path) ?? 0) : 0;
+    this.lenis.scrollTo(top, { immediate: true, force: true });
+    window.scrollTo(0, top);
+  }
+
+  _enterPage(state, restore = false) {
     const sec = this.app.querySelector(`[data-page="${state.page}"]`);
     if (!sec) return;
 
     if (state.page === "main") {
       document.body.style.height = "100vh";
       this.lenis.stop();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       if (!this.carousel) this.carousel = new Carousel(sec);
       this.carousel.start();
       const slots = sec.querySelectorAll(".slot");
@@ -348,7 +355,7 @@ export class Controller {
     if (state.page === "about") {
       document.body.style.height = "100vh";
       this.lenis.stop();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       return;
     }
 
@@ -362,7 +369,7 @@ export class Controller {
       sec._heightObserver.observe(sec);
       mountResume(sec);
       this.lenis.start();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       return;
     }
 
@@ -375,7 +382,7 @@ export class Controller {
       sec._heightObserver = new ResizeObserver(syncProjectHeight);
       sec._heightObserver.observe(sec);
       this.lenis.start();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       return;
     }
 
@@ -385,7 +392,7 @@ export class Controller {
       document.body.style.height = `${stack.offsetHeight}px`;
       this.lenis.start();
       this.lenis.resize();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       this._syncPlaneToEl(this.gpu.planes[mainIdx(state.image)], slots[0]);
       for (let j = 0; j < SATELLITES_PER_IMAGE; j++) {
         const slot = slots[j + 1];
@@ -404,14 +411,14 @@ export class Controller {
       sec._heightObserver = new ResizeObserver(syncMisteHeight);
       sec._heightObserver.observe(sec);
       this.lenis.start();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       return;
     }
 
     if (state.page === "index") {
       document.body.style.height = "100vh";
       this.lenis.stop();
-      this.lenis.scrollTo(0, { immediate: true, force: true });
+      this._restoreScroll(state, restore);
       if (!this.indexFloat) {
         this.indexFloat = new IndexFloat(this.gpu);
         this.indexFloat.prepare();
@@ -512,6 +519,7 @@ export class Controller {
     const transition = this._resolveTransition(fromState.page, next.page);
 
     this.mutating = true;
+    this.scrollPositions.set(fromState.path, window.scrollY);
     if (target !== "back") history.pushState({ path }, "", withBase(path));
     this._setActiveNav(next.page);
 
@@ -569,11 +577,18 @@ export class Controller {
     fromEl.remove();
     this.current = toState;
     this._snapLayout(toState);
-    this._enterPage(toState);
+    this._enterPage(toState, target === "back");
     this.mutating = false;
   }
 
   onClick(e) {
+    const back = e.target.closest("[data-route-back]");
+    if (back) {
+      e.preventDefault();
+      if (history.state?.path) history.back();
+      else this.navigate(this.current?.page === "resume" ? "/" : "/1");
+      return;
+    }
     const a = e.target.closest("a[data-link]");
     if (!a) return;
     e.preventDefault();

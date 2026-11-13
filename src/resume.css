@@ -19,8 +19,9 @@
   pointer-events: auto;
 }
 
-body[data-current-page="resume"] #nav,
 body[data-current-page="resume"] #footer { display: none; }
+
+body[data-current-page="resume"] #nav { display: flex; }
 
 .resume-v2 a:focus-visible,
 .resume-v2 button:focus-visible { outline-color: var(--archive-pink); }

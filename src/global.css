@@ -141,6 +141,23 @@ html.js #footer a {
   pointer-events: none;
 }
 
+#route-back {
+  display: none;
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 500;
+  color: #111;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-decoration: none;
+  opacity: .72;
+  transition: opacity .2s ease;
+}
+
+#route-back:hover { opacity: 1; }
+body:not([data-current-page="main"]):not([data-current-page="index"]) #route-back { display: block; }
+
 #nav a:not(:last-child)::after {
   content: ",";
   margin-left: 0.05rem;

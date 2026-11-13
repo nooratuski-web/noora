@@ -20,7 +20,7 @@ const projects = {
     next: "miste",
   },
   miste: {
-    index: "03",
+    index: "02",
     title: "MISTÉ",
     type: "PERSONAL PROJECT",
     summary: "概念香氛品牌 / 品牌识别 / 包装",
@@ -44,10 +44,15 @@ const route = (slug) => withBase(`/project/${slug}`);
 
 export function projectPdf(slug) {
   const project = projects[slug];
+  const fullSite = slug === "miste" ? `
+    <a class="miste-full-site" href="${withBase("/3")}" data-link>
+      <img src="${withBase("/images/miste/cover-wide.png")}" alt="MISTÉ 完整品牌网站预览">
+      <span><b>进入 MISTÉ 完整品牌网站</b>继续查看香氛系列、瓶身结构、品牌视觉与传播应用。<em>ENTER FULL WEBSITE →</em></span>
+    </a>` : "";
   return () => `
     <section data-page="project-pdf" class="page pdf-project">
       <header class="pdf-project-header">
-        <a class="pdf-project-back" href="${withBase("/1#experience")}" data-link aria-label="返回项目列表">← PROJECTS</a>
+        <span class="pdf-project-kicker">PROJECT ARCHIVE</span>
         <div class="pdf-project-title">
           <span>${project.index} / ${project.type}</span>
           <h1>${project.title}</h1>
@@ -55,6 +60,7 @@ export function projectPdf(slug) {
         </div>
         <span class="pdf-project-count">${project.pages} PAGES</span>
       </header>
+      ${fullSite}
       <main class="pdf-project-pages" aria-label="${project.title} 作品集">
         ${Array.from({ length: project.pages }, (_, index) => `
           <figure class="pdf-project-sheet">
