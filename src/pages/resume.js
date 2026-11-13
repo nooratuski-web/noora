@@ -41,8 +41,8 @@ export function resume() {
           <dl class="profile-meta">
             <div><dt>BASED IN</dt><dd>Kyoto, Japan</dd></div>
             <div><dt>GRADUATION</dt><dd>2027.03</dd></div>
-            <div><dt>SEEKING</dt><dd>Brand / IP / Creative Visual</dd></div>
-            <div><dt>AVAILABILITY</dt><dd>2027.04 · 可回国全职</dd></div>
+            <div><dt>PROJECTS</dt><dd>3 Personal · 1 Team</dd></div>
+            <div><dt>AVAILABILITY</dt><dd>2027.04 起 · 可回国全职</dd></div>
           </dl>
         </div>
         <figure class="profile-portrait archive-reveal">
@@ -109,20 +109,18 @@ export function resume() {
       <article id="skills" class="archive-section archive-skills" data-archive-section="skills">
         <div class="skills-columns">
           <section class="archive-reveal capability-map">
-            <h2 class="scramble-title" data-text="WHAT I CAN DELIVER">WHAT I CAN DELIVER</h2>
+            <h2 class="scramble-title" data-text="CORE STRENGTHS">CORE STRENGTHS</h2>
             <dl class="archive-stagger">
-              <div><dt>品牌视觉与 Campaign</dt><dd>品牌概念、视觉方向、主视觉、海报、社交媒体与系列传播延展。</dd></div>
-              <div><dt>原创 IP 与角色系统</dt><dd>角色定位、形象设定、表情与动作探索、周边及商业场景应用。</dd></div>
-              <div><dt>编辑与纸媒体设计</dt><dd>信息梳理、网格与版式、书籍编辑、纸张实验及印刷文件整理。</dd></div>
-              <div><dt>数字体验与传播视觉</dt><dd>体验路径、界面视觉、交互原型、活动页面与社交传播素材。</dd></div>
-              <div><dt>AIGC 辅助创作</dt><dd>概念发散、角色与场景探索、素材筛选、图像合成及人工精修。</dd></div>
+              <div><dt>概念与视觉叙事</dt><dd>从情绪、文字和使用场景中提炼概念，并转化为品牌故事、角色设定与数字体验。</dd></div>
+              <div><dt>系统化与跨媒介延展</dt><dd>能够把核心方向发展为视觉识别、界面、包装、编辑版式、Campaign 与实体应用。</dd></div>
+              <div><dt>AIGC 探索与人工精修</dt><dd>使用 AIGC 辅助造型和场景探索，通过人工筛选、结构修正、图像合成与统一规范保障质量。</dd></div>
             </dl>
           </section>
-          <section class="archive-reveal"><h2>TOOLS &amp; USE</h2><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>矢量绘图、标志与品牌视觉系统</span></li><li><b>Photoshop</b><span>图像处理、合成、修图与 AIGC 结果精修</span></li><li><b>InDesign</b><span>书籍编辑、版式系统与多页文件管理</span></li><li><b>Figma</b><span>界面设计、交互原型与传播物料排版</span></li><li><b>AIGC Tools</b><span>概念发散、角色与场景探索、图像素材辅助生成</span></li></ul></section>
+          <section class="archive-reveal"><h2>TOOLS &amp; USE</h2><p class="tools-level">熟练使用以下工具完成从视觉探索到成品输出的工作。</p><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>矢量绘图、标志与品牌视觉系统</span></li><li><b>Photoshop</b><span>图像处理、合成、修图与 AIGC 结果精修</span></li><li><b>InDesign</b><span>书籍编辑、版式系统与多页文件管理</span></li><li><b>Figma</b><span>界面设计、交互原型与传播物料排版</span></li><li><b>AIGC Tools</b><span>概念发散、角色与场景探索、图像素材辅助生成</span></li></ul></section>
         </div>
         <section class="work-style archive-reveal"><h2>HOW I WORK</h2><ol class="archive-stagger"><li><b>理解问题</b>梳理内容、受众、目标与输出场景</li><li><b>建立方向</b>完成资料研究、概念提炼与视觉探索</li><li><b>形成系统</b>统一字体、色彩、版式与跨媒介规则</li><li><b>细化落地</b>制作应用物料并进行人工检查与精修</li><li><b>协作交付</b>清晰沟通反馈，整理源文件与输出规范</li></ol></section>
         <footer class="archive-contact archive-reveal">
-          <div><h2>OPEN TO<br><em>OPPORTUNITIES</em></h2><p>创意视觉 / 品牌设计 / IP 设计 / 编辑设计 / AIGC 视觉</p></div>
+          <div><h2>LET’S<br><em>CONNECT</em></h2><p>2027年3月毕业｜可于2027年4月起回国全职</p></div>
           <address><span>Kyoto, Japan</span><a href="mailto:nooratuski@gmail.com">nooratuski@gmail.com</a><span>可配合回国工作安排</span></address>
           <p class="thanks-note">Thanks for scrolling.<br>Let’s make something worth remembering.</p>
         </footer>
