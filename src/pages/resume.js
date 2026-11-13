@@ -4,20 +4,20 @@ const profileImage = withBase("/images/noora-portrait.jpg");
 const asset = (name) => withBase(`/images/profile/${name}`);
 
 const projects = [
-  { name: "MORO", type: "PERSONAL PROJECT", field: "原创角色 IP / AIGC 辅助探索", image: asset("project-moro.png") },
-  { name: "NIGHT READING", type: "PERSONAL PROJECT", field: "阅读产品 / UI・UX / 传播视觉", image: asset("project-night-reading.png") },
-  { name: "MISTÉ", type: "PERSONAL PROJECT", field: "概念香氛品牌 / 品牌识别 / 包装", image: asset("project-miste.png") },
-  { name: "KAAT", type: "TEAM PROJECT", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "参与水镜摄影测试、材质探索、视觉方向筛选与传单设计。", image: asset("project-kaat.png") },
+  { name: "MORO", slug: "moro", type: "PERSONAL PROJECT", field: "原创角色 IP / AIGC 辅助探索", image: asset("project-moro.png") },
+  { name: "NIGHT READING", slug: "night-reading", type: "PERSONAL PROJECT", field: "阅读产品 / UI・UX / 传播视觉", image: asset("project-night-reading.png") },
+  { name: "MISTÉ", slug: "miste", type: "PERSONAL PROJECT", field: "概念香氛品牌 / 品牌识别 / 包装", image: asset("project-miste.png") },
+  { name: "KAAT", slug: "kaat", type: "TEAM PROJECT", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "参与水镜摄影测试、材质探索、视觉方向筛选与传单设计。", image: asset("project-kaat.png") },
 ];
 
 function projectRows() {
   return projects.map((project, index) => `
-    <button class="experience-row${index === 0 ? " is-active" : ""}" type="button" data-preview="${project.image}" data-preview-alt="${project.name} 项目代表图">
+    <a class="experience-row${index === 0 ? " is-active" : ""}" href="${withBase(`/project/${project.slug}`)}" data-link data-preview="${project.image}" data-preview-alt="${project.name} 项目代表图" aria-label="查看 ${project.name} 完整作品集">
       <span class="experience-number">0${index + 1}</span>
       <span class="experience-name">${project.name}</span>
       <span class="experience-meta"><b>${project.type}</b>${project.field}</span>
       ${project.detail ? `<span class="experience-detail">${project.detail}</span>` : ""}
-    </button>`).join("");
+    </a>`).join("");
 }
 
 export function resume() {

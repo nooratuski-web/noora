@@ -5,6 +5,7 @@ import { Cursor } from "./cursor.js";
 import { Preloader } from "./preloader.js";
 import { withBase } from "./paths.js";
 import "./resume.css";
+import "./project-pdf.css";
 
 async function start() {
   const lenis = new Lenis({

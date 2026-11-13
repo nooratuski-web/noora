@@ -4,6 +4,7 @@ import { home } from "./pages/home.js";
 import { inner } from "./pages/inner.js";
 import { miste } from "./pages/miste.js";
 import { mountResume, resume, unmountResume } from "./pages/resume.js";
+import { projectPdf } from "./pages/project-pdf.js";
 import { index as indexPage, IndexFloat } from "./pages/index-page.js";
 import { Carousel } from "./carousel.js";
 import { MAIN_COUNT, SATELLITES_PER_IMAGE, mainIdx, satIdx } from "./gpu.js";
@@ -191,6 +192,10 @@ const ROUTES = {
   "/3": { page: "miste", view: miste, image: 2 },
   "/4": { page: "inner", view: inner(3), image: 3 },
   "/5": { page: "inner", view: inner(4), image: 4 },
+  "/project/moro": { page: "project-pdf", view: projectPdf("moro"), image: null },
+  "/project/night-reading": { page: "project-pdf", view: projectPdf("night-reading"), image: null },
+  "/project/miste": { page: "project-pdf", view: projectPdf("miste"), image: null },
+  "/project/kaat": { page: "project-pdf", view: projectPdf("kaat"), image: null },
 };
 
 // ---------------------------------------------------------------------------
@@ -361,6 +366,19 @@ export class Controller {
       return;
     }
 
+    if (state.page === "project-pdf") {
+      const syncProjectHeight = () => {
+        document.body.style.height = `${sec.scrollHeight}px`;
+        this.lenis.resize();
+      };
+      syncProjectHeight();
+      sec._heightObserver = new ResizeObserver(syncProjectHeight);
+      sec._heightObserver.observe(sec);
+      this.lenis.start();
+      this.lenis.scrollTo(0, { immediate: true, force: true });
+      return;
+    }
+
     if (state.page === "inner") {
       const stack = sec.querySelector(".stack");
       const slots = stack.querySelectorAll(".slot");
@@ -430,6 +448,10 @@ export class Controller {
       sec?._heightObserver?.disconnect();
       unmountResume(sec);
     }
+    if (state.page === "project-pdf") {
+      const sec = this.app.querySelector('[data-page="project-pdf"]');
+      sec?._heightObserver?.disconnect();
+    }
     for (const plane of this.gpu.planes) {
       plane.trackedEl = null;
     }
@@ -454,7 +476,7 @@ export class Controller {
     if (state.page === "main") this.gpu.applyMainLayout();
     else if (state.page === "index") this.gpu.applyIndexLayout();
     else if (state.page === "inner") this.gpu.applyInnerLayout(state.image);
-    else if (["about", "resume", "miste"].includes(state.page)) {
+    else if (["about", "resume", "miste", "project-pdf"].includes(state.page)) {
       for (const plane of this.gpu.planes) plane.opacity = 0;
     }
   }

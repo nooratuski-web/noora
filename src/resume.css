@@ -216,7 +216,7 @@ html.js .resume-v2 .archive-reveal.is-visible { opacity: 1; transform: translate
 .experience-heading h2 em { color: var(--archive-pink); }
 .experience-heading p { max-width: 260px; margin-top: 38px; font-size: 13px; line-height: 1.8; }
 .experience-list { border-top: 1px solid var(--archive-steel); }
-.experience-row { width: 100%; display: grid; grid-template-columns: 34px minmax(130px, .75fr) minmax(180px, 1fr); gap: 16px; align-items: start; padding: 23px 0; border: 0; border-bottom: 1px solid var(--archive-steel); background: none; color: inherit; text-align: left; cursor: default; }
+.experience-row { width: 100%; display: grid; grid-template-columns: 34px minmax(130px, .75fr) minmax(180px, 1fr); gap: 16px; align-items: start; padding: 23px 0; border: 0; border-bottom: 1px solid var(--archive-steel); background: none; color: inherit; text-align: left; text-decoration: none; cursor: pointer; }
 .experience-number { color: var(--archive-ink); font-size: 10px; }
 .experience-name { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: 24px; line-height: .95; transition: color 200ms ease; }
 .experience-meta { display: grid; gap: 6px; font-size: 11px; line-height: 1.45; }
