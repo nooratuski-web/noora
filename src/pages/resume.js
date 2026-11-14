@@ -42,7 +42,7 @@ export function resume() {
           <dl class="profile-meta">
             <div><dt>BASED IN</dt><dd>Kyoto, Japan</dd></div>
             <div><dt>GRADUATION</dt><dd>2027.03</dd></div>
-            <div><dt>PROJECTS</dt><dd>3 Personal · 1 Team</dd></div>
+            <div><dt>LANGUAGES</dt><dd>中文 · 母语 / 日本語 · JLPT N2・日常交流</dd></div>
             <div><dt>AVAILABILITY</dt><dd>2027.04 起 · 可回国全职</dd></div>
           </dl>
         </div>
