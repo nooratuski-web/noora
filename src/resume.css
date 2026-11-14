@@ -262,6 +262,7 @@ html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
 .work-style li b { display: block; margin-bottom: 8px; font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: 22px; font-weight: 600; }
 .work-style li::before { content: "0" counter(work); display: block; margin-bottom: 24px; color: var(--archive-pink-readable); font-size: 10px; letter-spacing: .1em; }
 .archive-contact { display: grid; grid-template-columns: 1.4fr .8fr .8fr; gap: 60px; align-items: end; margin: 110px calc(clamp(24px, 6vw, 96px) * -1) 0; padding: 72px clamp(24px, 6vw, 96px); background: var(--archive-ink); color: var(--archive-light); }
+.archive-contact-final { margin: 0; }
 .archive-contact h2 { font-size: clamp(3rem, 5vw, 5.2rem); }
 .archive-contact h2 em { color: var(--archive-bright-pink); }
 .archive-contact > div p { margin-top: 28px; font-size: 12px; }
@@ -303,6 +304,7 @@ html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
   .capability-map dl div, .tools-list li { grid-template-columns: 1fr; gap: 8px; }
   .work-style ol { grid-template-columns: 1fr; gap: 0; }
   .archive-contact { display: block; margin-top: 90px; }
+  .archive-contact-final { margin: 0; }
   .archive-contact address, .thanks-note { margin-top: 60px; }
 }
 
