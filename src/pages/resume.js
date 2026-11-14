@@ -7,7 +7,7 @@ const projects = [
   { name: "MORO", slug: "moro", type: "个人项目｜2026", field: "原创角色 IP / AIGC 辅助探索", detail: "负责概念定位、AIGC 造型探索、人工修正、角色视觉系统与传播延展。", output: "交付：角色规范、表情动作、周边与 Campaign 视觉", image: asset("project-moro.png") },
   { name: "NIGHT READING", slug: "night-reading", type: "个人项目｜2026", field: "阅读产品 / UI・UX / 传播视觉", detail: "负责体验路径、情绪标签、UI 视觉、交互原型与分享传播。", output: "交付：交互原型、视觉系统、结果页与传播物料", image: asset("project-night-reading.png") },
   { name: "MISTÉ", slug: "miste", type: "个人项目｜2026", field: "概念香氛品牌 / 品牌识别 / 包装", detail: "负责品牌概念、命名、视觉识别、包装系统与 Campaign 延展。", output: "交付：品牌识别、香型系列、包装与社交 Campaign", image: asset("project-miste.png") },
-  { name: "KAAT", slug: "kaat", type: "校内团队实践｜2025—2026", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "负责水镜摄影测试、实验素材整理筛选、传单版式参与与最终视觉复核。", output: "团队交付：主视觉、Flyer / Poster 与印刷宣传物", image: asset("project-kaat.png") },
+  { name: "KAAT", slug: "kaat", type: "校内团队实践｜2025-2026", field: "剧场视觉 / 摄影实验 / 传单设计", detail: "参与水镜摄影测试、实验素材筛选、传单版式与动态视觉协作。", output: "团队交付：主视觉、Flyer / Poster 与动态视觉", image: asset("project-kaat.png") },
 ];
 
 function projectRows() {
@@ -72,6 +72,13 @@ export function resume() {
           <section class="archive-reveal"><h2>TOOLS IN PRACTICE</h2><p class="tools-level">熟练使用以下工具完成从视觉探索到成品输出的工作。</p><ul class="tools-list archive-stagger"><li><b>Illustrator</b><span>MISTÉ 品牌视觉、标志与包装图形</span></li><li><b>Photoshop</b><span>MORO 图像合成、人工修正与视觉统一</span></li><li><b>Figma</b><span>Night Reading 界面设计与交互原型</span></li><li><b>InDesign</b><span>编辑出版、版式系统与作品集管理</span></li><li><b>AIGC Tools</b><span>MORO 角色造型与 MISTÉ 场景素材探索</span></li></ul></section>
         </div>
         <section class="work-style archive-reveal"><h2>HOW I WORK</h2><ol class="archive-stagger"><li><b>理解问题</b>梳理内容、受众、目标与输出场景</li><li><b>建立方向</b>完成资料研究、概念提炼与视觉探索</li><li><b>形成系统</b>统一字体、色彩、版式与跨媒介规则</li><li><b>细化落地</b>制作应用物料并进行人工检查与精修</li><li><b>协作交付</b>清晰沟通反馈，整理源文件与输出规范</li></ol></section>
+        <section class="practice-collaboration archive-reveal">
+          <h2>PRACTICE &amp;<br>COLLABORATION</h2>
+          <div class="practice-list archive-stagger">
+            <article><p>校内团队实践｜2025-2026</p><h3>KAAT 剧场视觉项目</h3><span>与同学协作完成摄影实验、素材筛选、传单版式与动态视觉；负责本人参与部分的整理与交付。</span></article>
+            <article><p>课程出版项目｜个人制作</p><h3>原创艺术书籍《人间草木》</h3><span>独立完成概念、文字、纸张处理、编辑排版与手工装订。</span></article>
+          </div>
+        </section>
       </article>
 
       <article id="education" class="archive-section archive-education" data-archive-section="education">

@@ -261,6 +261,12 @@ html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
 .work-style li { counter-increment: work; font-size: 12px; line-height: 1.7; }
 .work-style li b { display: block; margin-bottom: 8px; font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: 22px; font-weight: 600; }
 .work-style li::before { content: "0" counter(work); display: block; margin-bottom: 24px; color: var(--archive-pink-readable); font-size: 10px; letter-spacing: .1em; }
+.practice-collaboration { display: grid; grid-template-columns: minmax(260px, .65fr) 1.35fr; gap: clamp(40px, 8vw, 130px); margin-top: 110px; padding-bottom: 110px; }
+.practice-list { border-top: 1px solid var(--archive-steel); }
+.practice-list article { display: grid; grid-template-columns: minmax(180px, .65fr) 1fr; gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid var(--archive-steel); }
+.practice-list p { grid-row: span 2; color: var(--archive-pink-readable); font-size: 9px; line-height: 1.6; letter-spacing: .08em; }
+.practice-list h3 { font-family: "Cormorant Garamond MISTE", Georgia, serif; font-size: clamp(22px, 2.2vw, 32px); font-weight: 500; line-height: 1; }
+.practice-list span { max-width: 50ch; font-size: 11px; line-height: 1.7; }
 .archive-contact { display: grid; grid-template-columns: 1.4fr .8fr .8fr; gap: 60px; align-items: end; margin: 110px calc(clamp(24px, 6vw, 96px) * -1) 0; padding: 72px clamp(24px, 6vw, 96px); background: var(--archive-ink); color: var(--archive-light); }
 .archive-contact-final { margin: 0; }
 .archive-contact h2 { font-size: clamp(3rem, 5vw, 5.2rem); }
@@ -303,6 +309,8 @@ html.js .resume-v2 .archive-stagger > :nth-child(5) { transition-delay: 220ms; }
   .skills-columns { grid-template-columns: 1fr; gap: 90px; }
   .capability-map dl div, .tools-list li { grid-template-columns: 1fr; gap: 8px; }
   .work-style ol { grid-template-columns: 1fr; gap: 0; }
+  .practice-collaboration, .practice-list article { grid-template-columns: 1fr; }
+  .practice-list p { grid-row: auto; }
   .archive-contact { display: block; margin-top: 90px; }
   .archive-contact-final { margin: 0; }
   .archive-contact address, .thanks-note { margin-top: 60px; }
