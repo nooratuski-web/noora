@@ -24,6 +24,7 @@ export class Carousel {
 
   start() {
     this.prepare();
+    if (this.slots.length < 2) return;
     window.addEventListener('touchstart', this.onTouchStart, { passive: true });
     window.addEventListener('touchmove', this.onTouchMove, { passive: false });
     window.addEventListener('keydown', this.onKey);

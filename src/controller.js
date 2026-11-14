@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { home } from "./pages/home.js";
-import { inner } from "./pages/inner.js";
 import { miste } from "./pages/miste.js";
 import { mountResume, resume, unmountResume } from "./pages/resume.js";
 import { projectPdf } from "./pages/project-pdf.js";
@@ -10,12 +9,8 @@ import { Carousel } from "./carousel.js";
 import { MAIN_COUNT, SATELLITES_PER_IMAGE, mainIdx, satIdx } from "./gpu.js";
 import { withBase, withoutBase } from "./paths.js";
 
-import { IndexToInnerTransition } from "./transitions/indexToInner.js";
 import { IndexToMainTransition } from "./transitions/indexToMain.js";
-import { InnerToMainTransition } from "./transitions/innerToMain.js";
-import { InnerToIndexTransition } from "./transitions/innerToIndex.js";
 import { MainToIndexTransition } from "./transitions/mainToIndex.js";
-import { MainToInnerTransition } from "./transitions/mainToInner.js";
 import { MisteToIndexTransition, MisteToMainTransition, ToMisteTransition } from "./transitions/misteTransition.js";
 
 gsap.registerPlugin(SplitText);
@@ -187,11 +182,7 @@ const ROUTES = {
   "/work": { page: "main", view: home, image: null },
   "/resume": { page: "resume", view: resume, image: null },
   "/index": { page: "index", view: indexPage, image: null },
-  "/1": { page: "resume", view: resume, image: null },
-  "/2": { page: "inner", view: inner(1), image: 1 },
-  "/3": { page: "miste", view: miste, image: 2 },
-  "/4": { page: "inner", view: inner(3), image: 3 },
-  "/5": { page: "inner", view: inner(4), image: 4 },
+  "/3": { page: "miste", view: miste, image: 0 },
   "/project/moro": { page: "project-pdf", view: projectPdf("moro"), image: null },
   "/project/night-reading": { page: "project-pdf", view: projectPdf("night-reading"), image: null },
   "/project/miste": { page: "project-pdf", view: projectPdf("miste"), image: null },
@@ -211,12 +202,8 @@ export class Controller {
 
     // Registry: from-page -> to-page -> Transition
     this.transitions = {
-      "main->inner": new MainToInnerTransition(),
-      "inner->main": new InnerToMainTransition(),
       "main->index": new MainToIndexTransition(),
       "index->main": new IndexToMainTransition(),
-      "index->inner": new IndexToInnerTransition(),
-      "inner->index": new InnerToIndexTransition(),
       "main->miste": new ToMisteTransition(),
       "index->miste": new ToMisteTransition(),
       "miste->main": new MisteToMainTransition(),

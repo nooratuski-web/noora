@@ -27,12 +27,12 @@ function roundedRectOpacityNode(sizeUniform, radiusUniform, opacityUniform) {
   return mask.mul(opacityUniform);
 }
 
-const IMAGES = ["/images/project-0.svg", "/images/project-1.svg", "/images/miste/cover.png", "/images/project-3.svg", "/images/project-4.svg"].map(withBase);
+const IMAGES = ["/images/miste/cover.png"].map(withBase);
 
-export const MAIN_COUNT = IMAGES.length; // 5
+export const MAIN_COUNT = IMAGES.length;
 export const SATELLITES_PER_IMAGE = 4; // 4 satellites per image
-export const SATELLITE_COUNT = MAIN_COUNT * SATELLITES_PER_IMAGE; // 20
-export const TOTAL_PLANES = MAIN_COUNT + SATELLITE_COUNT; // 25
+export const SATELLITE_COUNT = MAIN_COUNT * SATELLITES_PER_IMAGE;
+export const TOTAL_PLANES = MAIN_COUNT + SATELLITE_COUNT;
 
 export function mainIdx(image) {
   return image;

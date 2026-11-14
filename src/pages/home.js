@@ -27,12 +27,8 @@ export function aboutHome() {
 }
 
 export function home() {
-  const slots = [0, 1, 2, 3, 4]
-    .map(
-      (i) =>
-        `<a href="${withBase(`/${i + 1}`)}" data-link class="slot slot-${i}"><figure></figure><div class="slot-caption">${projects[i].title} <span class="project-category">${projects[i].category}</span></div></a>`,
-    )
-    .join("");
+  const project = projects[0];
+  const slots = `<a href="${withBase("/3")}" data-link class="slot slot-2"><figure></figure><div class="slot-caption">${project.title} <span class="project-category">${project.category}</span></div></a>`;
 
   return `
     <section data-page="main" class="page page-main">
