@@ -27,8 +27,12 @@ export function aboutHome() {
 }
 
 export function home() {
-  const project = projects[0];
-  const slots = `<a href="${withBase("/3")}" data-link class="slot slot-2"><figure></figure><div class="slot-caption">${project.title} <span class="project-category">${project.category}</span></div></a>`;
+  const slots = [
+    { project: projects[0], route: "/1", className: "slot-0" },
+    { project: projects[1], route: "/3", className: "slot-2" },
+  ].map(({ project, route, className }) =>
+    `<a href="${withBase(route)}" data-link class="slot ${className}"><figure></figure><div class="slot-caption">${project.title} <span class="project-category">${project.category}</span></div></a>`
+  ).join("");
 
   return `
     <section data-page="main" class="page page-main">

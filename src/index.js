@@ -56,6 +56,7 @@ start().catch(error => {
   document.getElementById("gpu-canvas")?.remove();
   document.documentElement.classList.add("graphics-fallback");
   import("./projects.js").then(({ projects }) => {
-    document.getElementById("app").innerHTML = `<section class="fallback-gallery"><h1>精选设计作品</h1>${projects.map((p) => `<article><img src="${withBase("/images/miste/cover.png")}" alt="${p.title} 项目封面"><h2>${p.title}</h2><p>${p.category}</p><p>${p.description}</p></article>`).join("")}</section>`;
+    const fallbackImages = ["/images/project-0.svg", "/images/miste/cover.png"];
+    document.getElementById("app").innerHTML = `<section class="fallback-gallery"><h1>精选设计作品</h1>${projects.map((p, i) => `<article><img src="${withBase(fallbackImages[i])}" alt="${p.title} 项目封面"><h2>${p.title}</h2><p>${p.category}</p><p>${p.description}</p></article>`).join("")}</section>`;
   });
 });
