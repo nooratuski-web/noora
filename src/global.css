@@ -536,6 +536,7 @@ body:not([data-current-page="main"]):not([data-current-page="index"]) #route-bac
 }
 
 .project-category { display:block; margin-top: .3rem; font-size: .7rem; }
+.project-caption { display:block; margin-top: .18rem; font-size: .7rem; }
 a:focus-visible, button:focus-visible { outline: 2px solid #385e44; outline-offset: 6px; }
 dialog { margin: auto; width: min(600px, calc(100% - 32px)); max-height: 85vh; padding: 48px; border: 1px solid #ddd; background: #f7f6f2; color: #222; }
 dialog::backdrop { background: #0005; backdrop-filter: blur(8px); }

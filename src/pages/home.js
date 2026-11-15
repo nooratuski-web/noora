@@ -31,7 +31,7 @@ export function home() {
     { project: projects[0], route: "/1", className: "slot-0" },
     { project: projects[1], route: "/3", className: "slot-2" },
   ].map(({ project, route, className }) =>
-    `<a href="${withBase(route)}" data-link class="slot ${className}"><figure></figure><div class="slot-caption">${project.title} <span class="project-category">${project.category}</span></div></a>`
+    `<a href="${withBase(route)}" data-link class="slot ${className}"><figure></figure><div class="slot-caption">${project.title}<span class="project-category">${project.category}</span>${project.caption ? `<span class="project-caption">${project.caption}</span>` : ""}</div></a>`
   ).join("");
 
   return `

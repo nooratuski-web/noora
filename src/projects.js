@@ -1,7 +1,8 @@
 export const projects = [
   {
     "title": "NOORA / 01",
-    "category": "个人档案 · 求职简历",
+    "category": "Personal Archive · CV & 4 Selected Projects",
+    "caption": "个人档案 · 求职简历与精选项目",
     "description": "关于我、教育背景、原创写作、项目经验与设计能力的个人档案。"
   },
   {
